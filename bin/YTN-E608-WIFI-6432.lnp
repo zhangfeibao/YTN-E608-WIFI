@@ -1,0 +1,6 @@
+"startup.obj",
+".\main.obj" 
+TO "YTN-E608-WIFI-6432" 
+RAMSIZE(256) 
+CODE( 0X0000-0X7FFF )
+XDATA( 0X0000-0X02FF )
