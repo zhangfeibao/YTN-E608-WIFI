@@ -16,5 +16,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="bin\YTN-E608-WIFI-6432.uvproj" />
+    <None Include="hw\YTN1-E608(Key)按键板..schdoc" />
+    <None Include="hw\YTN1-E608(Main)V1.4显示板..schdoc" />
+    <None Include="hw\YTN1-E608-WIFI_V1[增加模块选择电路]..schdoc" />
+    <None Include="hw\YTN1-E608-WIFI_V1_6432..schdoc" />
+    <None Include="hw\YTN1-POWER1-RoHS.schdoc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\heads.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\macrodef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MC96F6432.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\typedef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
