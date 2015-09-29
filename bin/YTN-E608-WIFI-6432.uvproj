@@ -364,6 +364,11 @@
           <GroupName>comm</GroupName>
           <Files>
             <File>
+              <FileName>it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\it.c</FilePath>
+            </File>
+            <File>
               <FileName>startup.a51</FileName>
               <FileType>2</FileType>
               <FilePath>.\startup.a51</FilePath>
@@ -372,6 +377,26 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>BSP</GroupName>
+          <Files>
+            <File>
+              <FileName>bsp_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\bsp\bsp_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>aip1944.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\bsp\aip1944.c</FilePath>
+            </File>
+            <File>
+              <FileName>display.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\bsp\display.c</FilePath>
             </File>
           </Files>
         </Group>

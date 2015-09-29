@@ -19,16 +19,39 @@ CPU DLL:         S8051.DLL V3.100.0.0
 Dialog DLL:      DCore51.DLL V2.81.4.0 
 <h2>Project:</h2>
 D:\rdworks\YTN-E608-WIFI\bin\YTN-E608-WIFI-6432.uvproj
-Project File Date:  09/28/2015
+Project File Date:  09/29/2015
 
 <h2>Output:</h2>
 Rebuild target 'release'
+compiling it.c...
 assembling startup.a51...
 compiling main.c...
+compiling bsp_init.c...
+compiling aip1944.c...
+compiling display.c...
+..\src\bsp\display.c(875): warning C280: 'com1000En': unreferenced local variable
+..\src\bsp\display.c(876): warning C280: 'com100En': unreferenced local variable
+..\src\bsp\display.c(877): warning C280: 'com10En': unreferenced local variable
 linking...
-Program Size: data=9.0 xdata=0 code=30
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ADC_START?BSP_INIT
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BUZ_ONOFF?BSP_INIT
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_SETLINE?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_CIRCLERUN?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_SHOWTEMPERATURE?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_SHOWHUMIDITY?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_SHOWPM?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_SHOWRT?DISPLAY
+Program Size: data=12.7 xdata=358 code=2530
 creating hex file from "YTN-E608-WIFI-6432"...
-"YTN-E608-WIFI-6432" - 0 Error(s), 0 Warning(s).
+"YTN-E608-WIFI-6432" - 0 Error(s), 11 Warning(s).
 </pre>
 </body>
 </html>

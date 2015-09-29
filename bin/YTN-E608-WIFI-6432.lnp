@@ -1,5 +1,9 @@
+".\it.obj",
 "startup.obj",
-".\main.obj" 
+".\main.obj",
+".\bsp_init.obj",
+".\aip1944.obj",
+".\display.obj" 
 TO "YTN-E608-WIFI-6432" 
 RAMSIZE(256) 
 CODE( 0X0000-0X7FFF )

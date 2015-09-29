@@ -127,12 +127,20 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\bsp\aip1944.h" />
+    <ClInclude Include="src\bsp\bsp_init.h" />
+    <ClInclude Include="src\bsp\display.h" />
     <ClInclude Include="src\heads.h" />
+    <ClInclude Include="src\it.h" />
     <ClInclude Include="src\macrodef.h" />
     <ClInclude Include="src\MC96F6432.h" />
     <ClInclude Include="src\typedef.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\bsp\aip1944.c" />
+    <ClCompile Include="src\bsp\bsp_init.c" />
+    <ClCompile Include="src\bsp\display.c" />
+    <ClCompile Include="src\it.c" />
     <ClCompile Include="src\main.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
