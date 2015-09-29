@@ -11,6 +11,10 @@
 #include "bsp/aip1944.h"
 #include "bsp/display.h"
 
+#include "protocol/fifo.h"
+#include "protocol/uart.h"
+#include "protocol/protocol.h"
+
 #endif
 
 

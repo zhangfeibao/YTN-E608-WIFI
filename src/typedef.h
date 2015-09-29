@@ -15,7 +15,7 @@ typedef enum
     TRUE = !FALSE
 }fastBool_t;
 
-typedef void *task_t(void);
+typedef void (*task_t)(void);
 
 #endif
 

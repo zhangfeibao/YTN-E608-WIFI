@@ -6,12 +6,16 @@ void main(void)
     static idata uint8_t taskIndexExt;
 
     BSP_Init();
+    Uart_MemoryInit();
+    Protocol_Init();
 
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL5;
 
     while (TRUE)
     {
         WDTCR |= 0x20;
+
+        Uart_RxDatsDeal();
 
         if (SysTick_4ms)
         {

@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.14.2
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: ÕÅ ·É±ª, RD, LIC=8V0DY-IILYY-ZJZ6U-SBX37-UTX50-CS3N7
+License Information: ZHANG FEIBAO, RD, LIC=BU374-FWVLH-PLHCK-ZW2C5-ULX21-6UCPY
  
 Tool Versions:
 Toolchain:       PK51 Prof. Developers Kit  Version: 9.54
@@ -29,9 +29,9 @@ compiling main.c...
 compiling bsp_init.c...
 compiling aip1944.c...
 compiling display.c...
-..\src\bsp\display.c(875): warning C280: 'com1000En': unreferenced local variable
-..\src\bsp\display.c(876): warning C280: 'com100En': unreferenced local variable
-..\src\bsp\display.c(877): warning C280: 'com10En': unreferenced local variable
+compiling fifo.c...
+compiling protocol.c...
+compiling uart.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_ADC_START?BSP_INIT
@@ -49,9 +49,11 @@ linking...
     SEGMENT: ?PR?_DISPLAY_SHOWPM?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_DISPLAY_SHOWRT?DISPLAY
-Program Size: data=12.7 xdata=358 code=2530
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CMD_DUMMY_DEAL?PROTOCOL
+Program Size: data=12.7 xdata=662 code=3859
 creating hex file from "YTN-E608-WIFI-6432"...
-"YTN-E608-WIFI-6432" - 0 Error(s), 11 Warning(s).
+"YTN-E608-WIFI-6432" - 0 Error(s), 9 Warning(s).
 </pre>
 </body>
 </html>

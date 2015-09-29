@@ -872,9 +872,9 @@ void Display_ShowNumInRTCArea(uint16_t num)
     uint8_t v10;
     uint8_t v1;
 
-    bool_t com1000En;
-    bool_t com100En;
-    bool_t com10En;
+//     bool_t com1000En;
+//     bool_t com100En;
+//     bool_t com10En;
 
     v1000 = num / 1000;
     v100 = (num / 100) % 10;

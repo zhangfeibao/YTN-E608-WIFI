@@ -134,6 +134,9 @@
     <ClInclude Include="src\it.h" />
     <ClInclude Include="src\macrodef.h" />
     <ClInclude Include="src\MC96F6432.h" />
+    <ClInclude Include="src\protocol\fifo.h" />
+    <ClInclude Include="src\protocol\protocol.h" />
+    <ClInclude Include="src\protocol\uart.h" />
     <ClInclude Include="src\typedef.h" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +145,9 @@
     <ClCompile Include="src\bsp\display.c" />
     <ClCompile Include="src\it.c" />
     <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\protocol\fifo.c" />
+    <ClCompile Include="src\protocol\protocol.c" />
+    <ClCompile Include="src\protocol\uart.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
