@@ -11,8 +11,6 @@ void main(void)
 
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL5;
 
-    State_TransitionTo(&State_Test, TRUE, FALSE);
-
     while (TRUE)
     {
         WDTCR |= 0x20;
