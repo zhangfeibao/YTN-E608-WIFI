@@ -149,7 +149,7 @@ void Display_SpLevel(SpOptions_t level)
 #define T_COM1_EXT_SEG_F    BIT6
 #define T_COM1_EXT_SEG_G    BIT5
 
-const uint8_t T_COM10_nums[] =
+code uint8_t T_COM10_nums[] =
 {
     (T_COM10_SEG_A | T_COM10_SEG_B | T_COM10_SEG_C | T_COM10_SEG_D | T_COM10_SEG_E),
     (T_COM10_SEG_B | T_COM10_SEG_C),
@@ -163,7 +163,7 @@ const uint8_t T_COM10_nums[] =
     (T_COM10_SEG_A | T_COM10_SEG_B | T_COM10_SEG_C | T_COM10_SEG_D)
 };
 
-const uint8_t T_COM10_EXT_nums[] =
+code uint8_t T_COM10_EXT_nums[] =
 {
     (T_COM10_EXT_SEG_F),
     (0),
@@ -177,7 +177,7 @@ const uint8_t T_COM10_EXT_nums[] =
     (T_COM10_EXT_SEG_F | T_COM10_EXT_SEG_G),
 };
 
-const uint8_t T_COM1_nums[] =
+code uint8_t T_COM1_nums[] =
 {
     (T_COM1_SEG_A | T_COM1_SEG_B | T_COM1_SEG_C | T_COM1_SEG_D | T_COM1_SEG_E),
     (T_COM1_SEG_B | T_COM1_SEG_C),
@@ -191,7 +191,7 @@ const uint8_t T_COM1_nums[] =
     (T_COM1_SEG_A | T_COM1_SEG_B | T_COM1_SEG_C | T_COM1_SEG_D),
 };
 
-const uint8_t T_COM1_EXT_nums[] =
+code uint8_t T_COM1_EXT_nums[] =
 {
     (T_COM1_EXT_SEG_F),
     (0),
@@ -265,7 +265,7 @@ void Display_ShowTemperature(uint8_t t)
 
 #define H_COM1_EXT_SEG_G    BIT6
 
-const uint8_t H_COM10_nums[] =
+code uint8_t H_COM10_nums[] =
 {
     (H_COM10_SEG_A | H_COM10_SEG_B | H_COM10_SEG_C | H_COM10_SEG_D | H_COM10_SEG_E | H_COM10_SEG_F),
     (H_COM10_SEG_B | H_COM10_SEG_C),
@@ -279,7 +279,7 @@ const uint8_t H_COM10_nums[] =
     (H_COM10_SEG_A | H_COM10_SEG_B | H_COM10_SEG_C | H_COM10_SEG_D | H_COM10_SEG_F)
 };
 
-const uint8_t H_COM10_EXT_nums[] =
+code uint8_t H_COM10_EXT_nums[] =
 {
     (0),
     (0),
@@ -293,7 +293,7 @@ const uint8_t H_COM10_EXT_nums[] =
     (H_COM10_EXT_SEG_G)
 };
 
-const uint8_t H_COM1_nums[] =
+code uint8_t H_COM1_nums[] =
 {
     (H_COM1_SEG_A | H_COM1_SEG_B | H_COM1_SEG_C | H_COM1_SEG_D | H_COM1_SEG_E | H_COM1_SEG_F),
     (H_COM1_SEG_B | H_COM1_SEG_C),
@@ -307,7 +307,7 @@ const uint8_t H_COM1_nums[] =
     (H_COM1_SEG_A | H_COM1_SEG_B | H_COM1_SEG_C | H_COM1_SEG_D | H_COM1_SEG_F)
 };
 
-const uint8_t H_COM1_EXT_nums[] =
+code uint8_t H_COM1_EXT_nums[] =
 {
     (0),
     (0),
@@ -404,7 +404,7 @@ void Display_ShowHumidity(uint8_t h)
 #define PM_COM1_E2_SEG_G    BIT5
 
 
-const uint8_t PM_COM1000_nums[] =
+code uint8_t PM_COM1000_nums[] =
 {
     (PM_COM1000_SEG_A | PM_COM1000_SEG_B | PM_COM1000_SEG_C | PM_COM1000_SEG_D | PM_COM1000_SEG_E),
     (PM_COM1000_SEG_B | PM_COM1000_SEG_C),
@@ -418,7 +418,7 @@ const uint8_t PM_COM1000_nums[] =
     (PM_COM1000_SEG_A | PM_COM1000_SEG_B | PM_COM1000_SEG_C | PM_COM1000_SEG_D)
 };
 
-const uint8_t PM_COM1000_E_nums[] =
+code uint8_t PM_COM1000_E_nums[] =
 {
     (PM_COM1000_E_SEG_E | PM_COM1000_E_SEG_F),
     (0),
@@ -433,7 +433,7 @@ const uint8_t PM_COM1000_E_nums[] =
 };
 
 
-const uint8_t PM_COM100_nums[] =
+code uint8_t PM_COM100_nums[] =
 {
     (PM_COM100_SEG_A | PM_COM100_SEG_B ),
     (PM_COM100_SEG_B),
@@ -447,7 +447,7 @@ const uint8_t PM_COM100_nums[] =
     (PM_COM100_SEG_A | PM_COM100_SEG_B)
 };
 
-const uint8_t PM_COM100_E1_nums[] =
+code uint8_t PM_COM100_E1_nums[] =
 {
     (PM_COM100_E1_SEG_C | PM_COM100_E1_SEG_D | PM_COM100_E1_SEG_E | PM_COM100_E1_SEG_F),
     (PM_COM100_E1_SEG_C),
@@ -461,7 +461,7 @@ const uint8_t PM_COM100_E1_nums[] =
     (PM_COM100_E1_SEG_C | PM_COM100_E1_SEG_D | PM_COM100_E1_SEG_F)
 };
 
-const uint8_t PM_COM100_E2_nums[] =
+code uint8_t PM_COM100_E2_nums[] =
 {
     (0),
     (0),
@@ -475,7 +475,7 @@ const uint8_t PM_COM100_E2_nums[] =
     (PM_COM100_E2_SEG_G)
 };
 
-const uint8_t PM_COM10_nums[] =
+code uint8_t PM_COM10_nums[] =
 {
     (PM_COM10_SEG_A | PM_COM10_SEG_B | PM_COM10_SEG_C | PM_COM10_SEG_D),
     (PM_COM10_SEG_B | PM_COM10_SEG_C),
@@ -489,7 +489,7 @@ const uint8_t PM_COM10_nums[] =
     (PM_COM10_SEG_A | PM_COM10_SEG_B | PM_COM10_SEG_C | PM_COM10_SEG_D)
 };
 
-const uint8_t PM_COM10_E_nums[] =
+code uint8_t PM_COM10_E_nums[] =
 {
     (PM_COM10_E_SEG_E | PM_COM10_E_SEG_F),
     (0),
@@ -503,7 +503,7 @@ const uint8_t PM_COM10_E_nums[] =
     (PM_COM10_E_SEG_F | PM_COM10_E_SEG_G)
 };
 
-const uint8_t PM_COM1_nums[] =
+code uint8_t PM_COM1_nums[] =
 {
     (PM_COM1_SEG_A),
     (0),
@@ -517,7 +517,7 @@ const uint8_t PM_COM1_nums[] =
     (PM_COM1_SEG_A)
 };
 
-const uint8_t PM_COM1_E1_nums[] =
+code uint8_t PM_COM1_E1_nums[] =
 {
     (PM_COM1_E1_SEG_B | PM_COM1_E1_SEG_C | PM_COM1_E1_SEG_D | PM_COM1_E1_SEG_E | PM_COM1_E1_SEG_F),
     (PM_COM1_E1_SEG_B | PM_COM1_E1_SEG_C),
@@ -531,7 +531,7 @@ const uint8_t PM_COM1_E1_nums[] =
     (PM_COM1_E1_SEG_B | PM_COM1_E1_SEG_C | PM_COM1_E1_SEG_D | PM_COM1_E1_SEG_F)
 };
 
-const uint8_t PM_COM1_E2_nums[] =
+code uint8_t PM_COM1_E2_nums[] =
 {
     (PM_COM1_E2_SEG_F),
     (0),
@@ -679,7 +679,7 @@ void Display_ShowPM(uint16_t pm)
 #define RT_COM_M1_E_SEG_G   BIT2
 
 
-const uint8_t RT_COM_H10_nums[] =
+code uint8_t RT_COM_H10_nums[] =
 {
     (RT_COM_H10_SEG_A | RT_COM_H10_SEG_B | RT_COM_H10_SEG_C),
     (RT_COM_H10_SEG_B | RT_COM_H10_SEG_C),
@@ -694,7 +694,7 @@ const uint8_t RT_COM_H10_nums[] =
     0
 };
 
-const uint8_t RT_COM_H10_E_nums[] =
+code uint8_t RT_COM_H10_E_nums[] =
 {
     (RT_COM_H10_E_SEG_D | RT_COM_H10_E_SEG_E | RT_COM_H10_E_SEG_F),
     (0),
@@ -709,7 +709,7 @@ const uint8_t RT_COM_H10_E_nums[] =
     RT_COM_H10_E_SEG_G
 };
 
-const uint8_t RT_COM_H1_nums[] =
+code uint8_t RT_COM_H1_nums[] =
 {
     (RT_COM_H1_SEG_A | RT_COM_H1_SEG_B | RT_COM_H1_SEG_C),
     (RT_COM_H1_SEG_B | RT_COM_H1_SEG_C),
@@ -724,7 +724,7 @@ const uint8_t RT_COM_H1_nums[] =
     0
 };
 
-const uint8_t RT_COM_H1_E_nums[] =
+code uint8_t RT_COM_H1_E_nums[] =
 {
     (RT_COM_H1_E_SEG_C | RT_COM_H1_E_SEG_D | RT_COM_H1_E_SEG_E | RT_COM_H1_E_SEG_F),
     (RT_COM_H1_E_SEG_C),
@@ -740,7 +740,7 @@ const uint8_t RT_COM_H1_E_nums[] =
 };
 
 
-const uint8_t RT_COM_M10_nums[] =
+code uint8_t RT_COM_M10_nums[] =
 {
     (RT_COM_M10_SEG_A | RT_COM_M10_SEG_B),
     (RT_COM_M10_SEG_B),
@@ -755,7 +755,7 @@ const uint8_t RT_COM_M10_nums[] =
     0
 };
 
-const uint8_t RT_COM_M10_E1_nums[] =
+code uint8_t RT_COM_M10_E1_nums[] =
 {
     (RT_COM_M10_E1_SEG_B | RT_COM_M10_E1_SEG_C | RT_COM_M10_E1_SEG_D | RT_COM_M10_E1_SEG_E | RT_COM_M10_E1_SEG_F),
     (RT_COM_M10_E1_SEG_C),
@@ -770,7 +770,7 @@ const uint8_t RT_COM_M10_E1_nums[] =
     0
 };
 
-const uint8_t RT_COM_M10_E2_nums[] =
+code uint8_t RT_COM_M10_E2_nums[] =
 {
     (0),
     (0),
@@ -786,7 +786,7 @@ const uint8_t RT_COM_M10_E2_nums[] =
 };
 
 
-const uint8_t RT_COM_M1_nums[] =
+code uint8_t RT_COM_M1_nums[] =
 {
     (RT_COM_M1_SEG_A | RT_COM_M1_SEG_B | RT_COM_M1_SEG_C),
     (RT_COM_M1_SEG_B | RT_COM_M1_SEG_C),
@@ -801,7 +801,7 @@ const uint8_t RT_COM_M1_nums[] =
     0
 };
 
-const uint8_t RT_COM_M1_E_nums[] =
+code uint8_t RT_COM_M1_E_nums[] =
 {
     (RT_COM_M1_E_SEG_D | RT_COM_M1_E_SEG_E | RT_COM_M1_E_SEG_F),
     (0),
@@ -1068,8 +1068,7 @@ void Display_Ctr(void)
     Display_SetAll(LED_OFF);
     Display_LedsEn.leds = 0;
 
-    //currentState->displayControl_handler();
-    Display_ShowNumInRTCArea(RT_1sCnt);
+    currentState->displayControl_handler();
 
     Aip1944_WriteDispDatas(Display_Datas,DISPLAY_DATA_LEN,0);
 }
