@@ -22,6 +22,7 @@
     <None Include="hw\YTN1-E608-WIFI_V1[增加模块选择电路]..schdoc" />
     <None Include="hw\YTN1-E608-WIFI_V1_6432..schdoc" />
     <None Include="hw\YTN1-POWER1-RoHS.schdoc" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\heads.h">

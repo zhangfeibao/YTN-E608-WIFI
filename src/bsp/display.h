@@ -96,7 +96,6 @@ typedef enum
 
 extern uint8_t Display_Datas[DISPLAY_DATA_LEN];
 extern bool_t Display_FlashOn;
-extern uint8_t Display_FlashCnt;
 extern bool_t Display_IsLowLight;
 extern LedEn_t Display_LedsEn;
 

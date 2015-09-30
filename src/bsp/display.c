@@ -1063,29 +1063,13 @@ void Display_LedDrive(bool_t comChangeEn)
 }
 #endif
 
-
-uint8_t Display_FlashCnt;
 void Display_Ctr(void)
 {
-    Display_FlashCnt ++;
-    if (Display_FlashCnt <= 5)
-    {
-        Display_FlashOn = TRUE;
-    }
-    else
-    {
-        Display_FlashOn = FALSE;
-        if (Display_FlashCnt >= 10)
-        {
-            Display_FlashCnt = 0;
-        }
-    }
-
     Display_SetAll(LED_OFF);
     Display_LedsEn.leds = 0;
 
     //currentState->displayControl_handler();
-    Display_ShowNumInRTCArea(1234);
+    Display_ShowNumInRTCArea(RT_1sCnt);
 
     Aip1944_WriteDispDatas(Display_Datas,DISPLAY_DATA_LEN,0);
 }

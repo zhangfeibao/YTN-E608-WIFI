@@ -196,6 +196,8 @@ static void port_init(void)
 
 void BSP_Init(void)
 {
+    LVRCR = 0X83;
+
     cli();          	// disable INT. during peripheral setting
     port_init();    	// initialize ports
     clock_init();   	// initialize operation clock

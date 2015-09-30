@@ -1,6 +1,7 @@
 #include "heads.h"
 
 volatile fastBool_t SysTick_4ms;
+volatile uint8_t RT_1sCnt;
 
 void INT_USI1_Rx() interrupt 3
 {
@@ -40,7 +41,34 @@ void INT_USI1_Tx() interrupt 4
 void INT_WT() interrupt 20
 {
     // Watch timer interrupt
-    // TODO: add your code here
+    static uint8_t rt_05sCnt;
+
+    Display_FlashOn = !Display_FlashOn;
+
+    rt_05sCnt++;
+    if (rt_05sCnt >= 2)
+    {
+        rt_05sCnt = 0;
+
+        RT_1sCnt++;
+    }
+
+    if (P1 & BIT1)
+    {
+        /* 电池供电 */
+        PCON = 0x03;
+        NOP; NOP; NOP; NOP;
+        NOP; NOP; NOP; NOP;
+
+        IE3 &= (~0x10);
+        IE &= (~0x08);
+        IE &= (~0x10); 
+    }
+    else
+    {
+        /* 正常供电 */
+        IE3 |= 0x10;
+    }
 }
 
 void INT_BIT() interrupt 22
