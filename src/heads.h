@@ -15,6 +15,10 @@
 #include "protocol/uart.h"
 #include "protocol/protocol.h"
 
+
+#include "fsm/fsm.h"
+#include "fsm/test/state_test.h"
+
 #endif
 
 
