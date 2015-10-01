@@ -4,7 +4,7 @@ queueADT Rx_Queue;
 queueADT Tx_Queue;
 
 uint8_t Rx_Buf[QueueArraySize];
-uint8_t Tx_Buf[50];
+uint8_t Tx_Buf[QueueArraySize];
 
 volatile uint8_t Rx_Timeout;
 volatile bool_t Rx_QueueDataExist;

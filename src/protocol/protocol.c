@@ -115,7 +115,7 @@ struct _protocolTab
     task_t cmdDeal;
 };
 
-struct _protocolTab ProtocolTab[]=
+code struct _protocolTab ProtocolTab[]=
 {
     { CMD_GET_SYS_STA,      CMD_GET_SYS_STA_LEN,        CMD_GET_SYS_STA_DEAL        },
     { CMD_POWER_CTR,        CMD_POWER_CTR_LEN,          CMD_POWER_CTR_DEAL          },

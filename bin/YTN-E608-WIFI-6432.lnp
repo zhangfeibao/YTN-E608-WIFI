@@ -4,6 +4,7 @@
 ".\bsp_init.obj",
 ".\aip1944.obj",
 ".\display.obj",
+".\buzzer.obj",
 ".\fifo.obj",
 ".\protocol.obj",
 ".\uart.obj",

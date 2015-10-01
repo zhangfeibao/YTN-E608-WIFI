@@ -64,6 +64,9 @@
     <ClInclude Include="src\fsm\test\state_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\bsp\buzzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.c">
@@ -94,6 +97,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\fsm\test\state_test.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bsp\buzzer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

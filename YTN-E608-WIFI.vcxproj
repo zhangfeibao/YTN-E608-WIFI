@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClInclude Include="src\bsp\aip1944.h" />
     <ClInclude Include="src\bsp\bsp_init.h" />
+    <ClInclude Include="src\bsp\buzzer.h" />
     <ClInclude Include="src\bsp\display.h" />
     <ClInclude Include="src\fsm\fsm.h" />
     <ClInclude Include="src\fsm\test\state_test.h" />
@@ -145,6 +146,7 @@
   <ItemGroup>
     <ClCompile Include="src\bsp\aip1944.c" />
     <ClCompile Include="src\bsp\bsp_init.c" />
+    <ClCompile Include="src\bsp\buzzer.c" />
     <ClCompile Include="src\bsp\display.c" />
     <ClCompile Include="src\fsm\fsm.c" />
     <ClCompile Include="src\fsm\test\state_test.c" />

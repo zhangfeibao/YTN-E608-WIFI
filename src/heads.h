@@ -10,6 +10,7 @@
 #include "bsp/bsp_init.h"
 #include "bsp/aip1944.h"
 #include "bsp/display.h"
+#include "bsp/buzzer.h"
 
 #include "protocol/fifo.h"
 #include "protocol/uart.h"

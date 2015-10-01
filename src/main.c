@@ -6,12 +6,15 @@ void main(void)
     static idata uint8_t taskIndexExt;
 
     BSP_Init();
+    Buzz_DeviceInit();
     Uart_MemoryInit();
     Protocol_Init();
 
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL5;
 
     State_TransitionTo(&State_Test, TRUE, FALSE);
+
+    Buzz_Set(1, 10, 15);
 
     while (TRUE)
     {
@@ -21,6 +24,7 @@ void main(void)
 
         if (SysTick_4ms)
         {
+            SysTick_4ms = FALSE;
 
             taskIndex++;
             taskIndexExt++;
@@ -31,7 +35,7 @@ void main(void)
 
             	break;
             case 2:
-
+                Buzz_Ctr();
                 break;
             case 3:
 
