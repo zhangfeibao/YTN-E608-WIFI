@@ -70,6 +70,9 @@
     <ClInclude Include="src\bsp\key.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\bsp\ir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.c">
@@ -106,6 +109,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\bsp\key.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bsp\ir.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

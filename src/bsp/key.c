@@ -5,7 +5,7 @@ KeyAction_t Key_Action;
 
 bool_t Key_Released;
 
-#define PORT_FOR_KEY_SCAN()   {P1CONH &= (~0XFC);P4CONH &= (~0X3F);}
+#define PORT_FOR_KEY_SCAN()   //{P1CONH &= (~0XFC);P4CONH &= (~0X3F);}
 static uint8_t Key_Read(void)
 {
     uint8_t keyDat;

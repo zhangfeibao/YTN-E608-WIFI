@@ -403,6 +403,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\bsp\buzzer.c</FilePath>
             </File>
+            <File>
+              <FileName>ir.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\bsp\ir.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

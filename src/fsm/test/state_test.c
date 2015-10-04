@@ -40,7 +40,7 @@ static void _displayControl(void)
     Display_ShowHumidity(25);
     Display_ShowRT(12, 30, FALSE, FALSE);
 
-    Display_ShowPM(1234);
+    Display_ShowPM(IR_Code);
     
     A_LABEL_PM25;
     A_LABEL_COL;
@@ -64,7 +64,7 @@ static void _motorCtr(void)
 
 static void _irDataDeal(void)
 {
-    
+    Buzz_Set(1, 10, 15);
 }
 
 

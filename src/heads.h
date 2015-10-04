@@ -11,6 +11,7 @@
 #include "bsp/aip1944.h"
 #include "bsp/display.h"
 #include "bsp/buzzer.h"
+#include "bsp/ir.h"
 
 #include "protocol/fifo.h"
 #include "protocol/uart.h"

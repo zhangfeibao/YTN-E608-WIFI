@@ -5,6 +5,7 @@
 ".\aip1944.obj",
 ".\display.obj",
 ".\buzzer.obj",
+".\ir.obj",
 ".\fifo.obj",
 ".\protocol.obj",
 ".\uart.obj",

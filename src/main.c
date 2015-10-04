@@ -26,6 +26,13 @@ void main(void)
         {
             SysTick_4ms = FALSE;
 
+            if (IR_Changed)
+            {
+                IR_Changed = FALSE;
+
+                currentState->irData_handler();
+            }
+
             taskIndex++;
             taskIndexExt++;
 
