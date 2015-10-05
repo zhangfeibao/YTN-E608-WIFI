@@ -6,6 +6,7 @@
 ".\display.obj",
 ".\buzzer.obj",
 ".\ir.obj",
+".\humidity.obj",
 ".\fifo.obj",
 ".\protocol.obj",
 ".\uart.obj",

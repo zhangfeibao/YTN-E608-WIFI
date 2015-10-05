@@ -12,6 +12,8 @@
 #include "bsp/display.h"
 #include "bsp/buzzer.h"
 #include "bsp/ir.h"
+#include "bsp/humidity.h"
+
 
 #include "protocol/fifo.h"
 #include "protocol/uart.h"

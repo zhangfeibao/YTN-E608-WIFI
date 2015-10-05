@@ -5,10 +5,13 @@ void main(void)
     static idata uint8_t taskIndex;
     static idata uint8_t taskIndexExt;
 
+    static idata uint8_t HSampleT_Cnt;
+
     BSP_Init();
     Buzz_DeviceInit();
     Uart_MemoryInit();
     Protocol_Init();
+    Humidity_DeviceInit();
 
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL5;
 
@@ -21,6 +24,15 @@ void main(void)
         WDTCR |= 0x20;
 
         Uart_RxDatsDeal();
+
+        if (HSampleT_Cnt > 25)
+        {
+            if (SquGen_Cnt >= 6)
+            {
+                Humidity_AdHBuf = Utils_GetAdValue(2);
+                HSampleT_Cnt = 0;
+            }
+        }
 
         if (SysTick_4ms)
         {
@@ -35,6 +47,8 @@ void main(void)
 
             taskIndex++;
             taskIndexExt++;
+
+            HSampleT_Cnt++;
 
             switch (taskIndex)
             {
@@ -63,6 +77,9 @@ void main(void)
                 taskIndexExt = 0;
 
                 Display_Ctr();
+
+                Humidity_GetCurrentT();
+                Humidity_GetCurrentH();
             }
         }
     }

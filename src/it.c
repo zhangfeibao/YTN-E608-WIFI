@@ -3,6 +3,8 @@
 volatile fastBool_t SysTick_4ms;
 volatile uint8_t RT_1sCnt;
 
+volatile uint8_t idata SquGen_Cnt;
+
 void INT_USI1_Rx() interrupt 3
 {
     // USI1 Rx interrupt
@@ -95,6 +97,9 @@ static idata struct _IRFlag IR_Flags;
 #define rx_long_ok      IR_Flags._rx_long_ok
 #define fan_fb_is_high  IR_Flags._fan_fb_is_high
 
+#define P_CO    P23
+#define P_SQU   P22
+
 void INT_BIT() interrupt 22
 {
     // BIT interrupt
@@ -176,6 +181,26 @@ void INT_BIT() interrupt 22
             rx_run = 0;
         }
     }
+
+    /* 温湿度方波 */
+    SquGen_Cnt++;
+    if (SquGen_Cnt <= 4)
+    {
+        P_CO = 0;
+        P_SQU = 1;
+    }
+    else if (SquGen_Cnt <= 8)
+    {
+        P_CO = 1;
+        P_SQU = 0;
+        if (SquGen_Cnt == 8)
+        {
+            SquGen_Cnt = 0;
+        }
+    }
+
+
+    /* 时间基准 */
 
     t_128usCnt++;
     if (t_128usCnt >= 50)

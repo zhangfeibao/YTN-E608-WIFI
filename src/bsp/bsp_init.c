@@ -5,7 +5,7 @@ static void ADC_init(void)
 {
     // initialize A/D convertor
     ADCCRL = 0xA0;  	// setting
-    ADCCRH = 0x04;  	// trigger source, alignment, frequency
+    ADCCRH = 0x00;  	// trigger source, alignment, frequency
 }
 
 static void ADC_start(unsigned char ch)

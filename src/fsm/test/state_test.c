@@ -36,8 +36,8 @@ static void _displayControl(void)
     A_LABEL_T_OFF_3;
 
 
-    Display_ShowTemperature(25);
-    Display_ShowHumidity(25);
+    Display_ShowTemperature(Humidity_CurrentT);
+    Display_ShowHumidity(Humidity_CurrentH);
     Display_ShowRT(12, 30, FALSE, FALSE);
 
     Display_ShowPM(IR_Code);
