@@ -102,12 +102,12 @@ extern LedEn_t Display_LedsEn;
 void Display_SetAll(LedSta_t sta);
 void Display_SetLine(void);
 void Display_CircleRun(DispCircleSp_t sp);
-//void Display_PMLevel(DustLevel_t level);
+void Display_DustLevel(uint8_t level);
 //void Display_SpLevel(SpOptions_t level);
 
 void Display_ShowTemperature(uint8_t t);
 void Display_ShowHumidity(uint8_t h);
-void Display_ShowPM(uint16_t pm);
+void Display_DustData(uint16_t pm);
 void Display_ShowRT(uint8_t h,uint8_t m,bool_t hFlashEn,bool_t mFlashEn);
 
 void Display_ShowNumInRTCArea(uint16_t num);

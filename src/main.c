@@ -12,8 +12,10 @@ void main(void)
     Uart_MemoryInit();
     Protocol_Init();
     Humidity_DeviceInit();
+    Dust_DeviceInit();
 
-    Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL5;
+    Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL7;
+    DUST_POWER = 1;
 
     State_TransitionTo(&State_Test, TRUE, FALSE);
 
@@ -59,7 +61,7 @@ void main(void)
                 Buzz_Ctr();
                 break;
             case 3:
-
+                Dust_DataUpdate();
                 break;
             case 4:
 
@@ -72,7 +74,7 @@ void main(void)
             }
 
             taskIndexExt++;
-            if (taskIndexExt > 15)
+            if (taskIndexExt >= 15)
             {
                 taskIndexExt = 0;
 
@@ -80,6 +82,8 @@ void main(void)
 
                 Humidity_GetCurrentT();
                 Humidity_GetCurrentH();
+
+                Dust_LevelUpdate();
             }
         }
     }

@@ -13,6 +13,7 @@
 #include "bsp/buzzer.h"
 #include "bsp/ir.h"
 #include "bsp/humidity.h"
+#include "bsp/dust.h"
 
 
 #include "protocol/fifo.h"

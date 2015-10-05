@@ -77,29 +77,28 @@ void Display_CircleRun(DispCircleSp_t sp)
     }
 }
 
-#if 0
-void Display_PMLevel(DustLevel_t level)
+void Display_DustLevel(uint8_t level)
 {
     switch (level)
     {
-    case DUST_LEVEL_6:
+    case 6:
         Display_Datas[0x10] |= (BIT1 | BIT2);
-    case DUST_LEVEL_5:
+    case 5:
         Display_Datas[0x10] |=BIT3;
-    case DUST_LEVEL_4:
+    case 4:
         Display_Datas[0x10] |=BIT4;
-    case DUST_LEVEL_3:
+    case 3:
         Display_Datas[0x10] |=BIT5;
-    case DUST_LEVEL_2:
+    case 2:
         Display_Datas[0x10] |=BIT6;
-    case DUST_LEVEL_1:
+    case 1:
         Display_Datas[0x10] |=BIT7;
         break;
     default:
         break;
     }
 }
-
+#if 0
 void Display_SpLevel(SpOptions_t level)
 {
     switch (level)
@@ -546,7 +545,7 @@ code uint8_t PM_COM1_E2_nums[] =
 };
 
 
-void Display_ShowPM(uint16_t pm)
+void Display_DustData(uint16_t pm)
 {
     uint8_t v1000;
     uint8_t v100;

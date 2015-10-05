@@ -76,6 +76,9 @@
     <ClInclude Include="src\bsp\humidity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\bsp\dust.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.c">
@@ -118,6 +121,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\bsp\humidity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bsp\dust.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

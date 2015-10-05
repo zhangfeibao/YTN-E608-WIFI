@@ -40,7 +40,16 @@ static void _displayControl(void)
     Display_ShowHumidity(Humidity_CurrentH);
     Display_ShowRT(12, 30, FALSE, FALSE);
 
-    Display_ShowPM(IR_Code);
+    if (Dust_IsReady)
+    {
+        Display_DustData(Dust_Data);
+        Display_DustLevel(Dust_Level);
+    }
+    else
+    {
+        Display_DustData(0);
+    }
+    
     
     A_LABEL_PM25;
     A_LABEL_COL;

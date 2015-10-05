@@ -110,6 +110,8 @@ void INT_BIT() interrupt 22
     static idata uint8_t   dataCount;
     static idata uint16_t  rxData;
 
+    static idata uint16_t Dust_SignalLowHoldCnt;
+
     /* 红外遥控接收 ---------------------------------------------------------- */
     if (REMOTE_RX)
     {
@@ -182,7 +184,7 @@ void INT_BIT() interrupt 22
         }
     }
 
-    /* 温湿度方波 */
+    /* 温湿度方波 -------------------------------------------------------------*/
     SquGen_Cnt++;
     if (SquGen_Cnt <= 4)
     {
@@ -199,8 +201,23 @@ void INT_BIT() interrupt 22
         }
     }
 
+    /* 灰度信号检测 ----------------------------------------------------------- */
+    if (P2 & BIT1)
+    {
+        if (Dust_SignalLowHoldCnt)
+        {
+            Dust_RTData = Dust_SignalLowHoldCnt;
+            Dust_DataValid = TRUE;
+        }
+        Dust_SignalLowHoldCnt = 0;
+    }
+    else
+    {
+        Dust_SignalLowHoldCnt++;
+    }
 
-    /* 时间基准 */
+
+    /* 时间基准 ---------------------------------------------------------------*/
 
     t_128usCnt++;
     if (t_128usCnt >= 50)
