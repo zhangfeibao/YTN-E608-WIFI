@@ -303,7 +303,7 @@
             <Fuzzy>3</Fuzzy>
             <Optimize>8</Optimize>
             <WarningLevel>2</WarningLevel>
-            <SizeSpeed>0</SizeSpeed>
+            <SizeSpeed>1</SizeSpeed>
             <ObjectExtend>1</ObjectExtend>
             <ACallAJmp>0</ACallAJmp>
             <InterruptVectorAddress>0</InterruptVectorAddress>
@@ -407,6 +407,16 @@
               <FileName>ir.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\bsp\ir.c</FilePath>
+            </File>
+            <File>
+              <FileName>humidity.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\bsp\humidity.c</FilePath>
+            </File>
+            <File>
+              <FileName>dust.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\bsp\dust.c</FilePath>
             </File>
           </Files>
         </Group>

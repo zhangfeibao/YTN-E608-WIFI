@@ -60,12 +60,14 @@ static void Timer1_init(void)
 {
     // initialize Timer1
     // 16bit PWM, period = 0.250000mS ( 4000.000000Hz )
-    //     PWM duty = 50.000000%
+    // PWM duty = 50.000000%
     T1CRH = 0x20;   	// PWM setting High, 1 shot mode
-                        //T1CRH |= 0x30;	// PWM repeat mode
+    T1CRH |= 0x30;	    // PWM repeat mode
     T1CRL = 0xC0;   	// PWM setting Low
-    T1BDRH = 0x07;  	// duty High
-    T1BDRL = 0xCF;  	// duty Low
+    //T1BDRH = 0x07;  	// duty High
+    //T1BDRL = 0xCF;  	// duty Low
+    T1BDRH = 0x00;  	// duty High
+    T1BDRL = 0x00;  	// duty Low
     T1ADRH = 0x0F;  	// period count High
     T1ADRL = 0x9F;  	// period count Low
     T1CRH |= 0x80;  	// enable counter

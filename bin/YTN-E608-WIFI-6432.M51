@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        10/05/2015  15:08:33  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/05/2015  18:13:27  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  YTN-E608-WIFI-6432 (IT)
             BIT     0021H.2   0000H.1   UNIT         ?BI?HUMIDITY
             BIT     0021H.3   0000H.1   UNIT         ?BI?PROTOCOL
                     0021H.4   0000H.4                *** GAP ***
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 2
 
 
             IDATA   0022H     0001H     UNIT         ?STACK
@@ -79,17 +79,16 @@ LINK MAP OF MODULE:  YTN-E608-WIFI-6432 (IT)
             XDATA   015DH     0003H     UNIT         ?XD?_QUEUEISFULL?FIFO
             XDATA   0160H     0002H     UNIT         ?XD?IR
             XDATA   0162H     0002H     UNIT         ?XD?FSM
-            XDATA   0164H     0001H     UNIT         ?XD?AIP1944
-            XDATA   0165H     0001H     UNIT         ?XD?CMD_DUMMY_DEAL?PROTOCOL
+            XDATA   0164H     0002H     UNIT         ?XD?STATE_TEST
+            XDATA   0166H     0001H     UNIT         ?XD?AIP1944
+            XDATA   0167H     0001H     UNIT         ?XD?CMD_DUMMY_DEAL?PROTOCOL
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0016H     UNIT         ?PR?TIMER1_INIT?BSP_INIT
-            CODE    0019H     0001H     UNIT         ?PR?CMD_GET_SYS_STA_DEAL?PROTOCOL
-            CODE    001AH     0001H     UNIT         ?PR?CMD_POWER_CTR_DEAL?PROTOCOL
+            CODE    0003H     0018H     UNIT         ?PR?TIMER1_INIT?BSP_INIT
             CODE    001BH     0003H     ABSOLUTE     
             CODE    001EH     0004H     UNIT         ?PR?WDT_CLEAR?BSP_INIT
-            CODE    0022H     0001H     UNIT         ?PR?CMD_FAN_CTR_DEAL?PROTOCOL
+            CODE    0022H     0001H     UNIT         ?PR?CMD_GET_SYS_STA_DEAL?PROTOCOL
             CODE    0023H     0003H     ABSOLUTE     
             CODE    0026H     0075H     UNIT         ?PR?_HUMIDITY_GETH?HUMIDITY
             CODE    009BH     0008H     UNIT         ?PR?LCD_INIT?BSP_INIT
@@ -119,10 +118,10 @@ LINK MAP OF MODULE:  YTN-E608-WIFI-6432 (IT)
             CODE    1D12H     005FH     UNIT         ?PR?_DISPLAY_SHOWTEMPERATURE?DISPLAY
             CODE    1D71H     005FH     UNIT         ?PR?_DISPLAY_SHOWHUMIDITY?DISPLAY
             CODE    1DD0H     005DH     UNIT         ?PR?_DEQUEUE?FIFO
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 3
-
-
             CODE    1E2DH     0052H     UNIT         ?PR?_STATE_TRANSITIONTO?FSM
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 3
+
+
             CODE    1E7FH     0051H     UNIT         ?PR?PORT_INIT?BSP_INIT
             CODE    1ED0H     0050H     UNIT         ?PR?_AIP1944_WRITEDISPDATAS?AIP1944
             CODE    1F20H     004BH     UNIT         ?PR?DUST_GETRTLEVEL?DUST
@@ -137,55 +136,57 @@ LINK MAP OF MODULE:  YTN-E608-WIFI-6432 (IT)
             CODE    2163H     002FH     UNIT         ?PR?CMD_DUMMY_DEAL?PROTOCOL
             CODE    2192H     002BH     UNIT         ?PR?BSP_INIT?BSP_INIT
             CODE    21BDH     0024H     UNIT         ?C_INITSEG
-            CODE    21E1H     0020H     UNIT         ?PR?DISPLAY_SETLINE?DISPLAY
-            CODE    2201H     001BH     UNIT         ?PR?_BUZZ_SET?BUZZER
-            CODE    221CH     001BH     UNIT         ?CO?FSM
-            CODE    2237H     001BH     UNIT         ?CO?STATE_TEST
-            CODE    2252H     001AH     UNIT         ?PR?_AIP1944_WRITEBYTE?AIP1944
-            CODE    226CH     001AH     UNIT         ?PR?_QUEUELEN?FIFO
-            CODE    2286H     0016H     UNIT         ?PR?_UTILS_GETADVALUE?HUMIDITY
-            CODE    229CH     0015H     UNIT         ?PR?_QUEUEISEMPTY?FIFO
-            CODE    22B1H     0014H     UNIT         ?PR?_DISPLAY_SETALL?DISPLAY
-            CODE    22C5H     0014H     UNIT         ?PR?_HUMIDITY_AD2T?HUMIDITY
-            CODE    22D9H     0014H     UNIT         ?PR?DUST_DEVICEINIT?DUST
-            CODE    22EDH     0012H     UNIT         ?PR?_BUZ_ONOFF?BSP_INIT
-            CODE    22FFH     0012H     UNIT         ?PR?BUZZ_DEVICEINIT?BUZZER
-            CODE    2311H     0010H     UNIT         ?PR?UART_INIT?BSP_INIT
-            CODE    2321H     0010H     UNIT         ?PR?HUMIDITY_DEVICEINIT?HUMIDITY
-            CODE    2331H     000FH     UNIT         ?PR?_ADC_START?BSP_INIT
-            CODE    2340H     000EH     UNIT         ?PR?_INITQUEUE?FIFO
-            CODE    234EH     000DH     UNIT         ?PR?WT_INIT?BSP_INIT
-            CODE    235BH     000AH     UNIT         ?PR?TIMER0_INIT?BSP_INIT
-            CODE    2365H     0009H     UNIT         ?PR?WDT_INIT?BSP_INIT
-            CODE    236EH     0009H     UNIT         ?PR?UART_RXDATSDEAL?UART
-            CODE    2377H     0009H     UNIT         ?PR?_IRDATADEAL?STATE_TEST
-            CODE    2380H     0008H     UNIT         ?PR?PROTOCOL_INIT?PROTOCOL
-            CODE    2388H     0007H     UNIT         ?PR?ADC_INIT?BSP_INIT
-            CODE    238FH     0007H     UNIT         ?PR?BUZ_INIT?BSP_INIT
-            CODE    2396H     0007H     UNIT         ?PR?CLOCK_INIT?BSP_INIT
-            CODE    239DH     0001H     UNIT         ?PR?CMD_FIX_CTR_DEAL?PROTOCOL
-            CODE    239EH     0001H     UNIT         ?PR?CMD_CLEAN_CTR_DEAL?PROTOCOL
-            CODE    239FH     0001H     UNIT         ?PR?CMD_AION_CTR_DEAL?PROTOCOL
-            CODE    23A0H     0001H     UNIT         ?PR?CMD_UV_CTR_DEAL?PROTOCOL
-            CODE    23A1H     0001H     UNIT         ?PR?CMD_TIMER_CTR_DEAL?PROTOCOL
-            CODE    23A2H     0001H     UNIT         ?PR?CMD_GET_PM_DATAS_DEAL?PROTOCOL
-            CODE    23A3H     0001H     UNIT         ?PR?CMD_GET_ENE_DATAS_DEAL?PROTOCOL
-            CODE    23A4H     0001H     UNIT         ?PR?CMD_RT_SET_DEAL?PROTOCOL
-            CODE    23A5H     0001H     UNIT         ?PR?CMD_MEM_SET_DEAL?PROTOCOL
-            CODE    23A6H     0001H     UNIT         ?PR?CMD_REST_DEAL?PROTOCOL
-            CODE    23A7H     0001H     UNIT         ?PR?CMD_GET_DEVICE_INFO_DEAL?PROTOCOL
-            CODE    23A8H     0001H     UNIT         ?PR?CMD_WIFI_STA_CHANGE_DEAL?PROTOCOL
-            CODE    23A9H     0001H     UNIT         ?PR?TASK_DONOTHING?FSM
-            CODE    23AAH     0001H     UNIT         ?PR?_KEYACTIONDEAL?STATE_TEST
-            CODE    23ABH     0001H     UNIT         ?PR?_TASKEXE?STATE_TEST
-            CODE    23ACH     0001H     UNIT         ?PR?_TIMETICK?STATE_TEST
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 4
+            CODE    21E1H     0021H     UNIT         ?PR?_IRDATADEAL?STATE_TEST
+            CODE    2202H     0020H     UNIT         ?PR?DISPLAY_SETLINE?DISPLAY
+            CODE    2222H     001BH     UNIT         ?PR?_BUZZ_SET?BUZZER
+            CODE    223DH     001BH     UNIT         ?CO?FSM
+            CODE    2258H     001BH     UNIT         ?CO?STATE_TEST
+            CODE    2273H     001AH     UNIT         ?PR?_AIP1944_WRITEBYTE?AIP1944
+            CODE    228DH     001AH     UNIT         ?PR?_QUEUELEN?FIFO
+            CODE    22A7H     0016H     UNIT         ?PR?_UTILS_GETADVALUE?HUMIDITY
+            CODE    22BDH     0015H     UNIT         ?PR?_QUEUEISEMPTY?FIFO
+            CODE    22D2H     0014H     UNIT         ?PR?_DISPLAY_SETALL?DISPLAY
+            CODE    22E6H     0014H     UNIT         ?PR?_HUMIDITY_AD2T?HUMIDITY
+            CODE    22FAH     0014H     UNIT         ?PR?DUST_DEVICEINIT?DUST
+            CODE    230EH     0012H     UNIT         ?PR?_BUZ_ONOFF?BSP_INIT
+            CODE    2320H     0012H     UNIT         ?PR?BUZZ_DEVICEINIT?BUZZER
+            CODE    2332H     0010H     UNIT         ?PR?UART_INIT?BSP_INIT
+            CODE    2342H     0010H     UNIT         ?PR?HUMIDITY_DEVICEINIT?HUMIDITY
+            CODE    2352H     000FH     UNIT         ?PR?_ADC_START?BSP_INIT
+            CODE    2361H     000EH     UNIT         ?PR?_INITQUEUE?FIFO
+            CODE    236FH     000DH     UNIT         ?PR?WT_INIT?BSP_INIT
+            CODE    237CH     000AH     UNIT         ?PR?TIMER0_INIT?BSP_INIT
+            CODE    2386H     0009H     UNIT         ?PR?WDT_INIT?BSP_INIT
+            CODE    238FH     0009H     UNIT         ?PR?UART_RXDATSDEAL?UART
+            CODE    2398H     0008H     UNIT         ?PR?PROTOCOL_INIT?PROTOCOL
+            CODE    23A0H     0007H     UNIT         ?PR?ADC_INIT?BSP_INIT
+            CODE    23A7H     0007H     UNIT         ?PR?BUZ_INIT?BSP_INIT
+            CODE    23AEH     0007H     UNIT         ?PR?CLOCK_INIT?BSP_INIT
+            CODE    23B5H     0001H     UNIT         ?PR?CMD_POWER_CTR_DEAL?PROTOCOL
+            CODE    23B6H     0001H     UNIT         ?PR?CMD_FAN_CTR_DEAL?PROTOCOL
+            CODE    23B7H     0001H     UNIT         ?PR?CMD_FIX_CTR_DEAL?PROTOCOL
+            CODE    23B8H     0001H     UNIT         ?PR?CMD_CLEAN_CTR_DEAL?PROTOCOL
+            CODE    23B9H     0001H     UNIT         ?PR?CMD_AION_CTR_DEAL?PROTOCOL
+            CODE    23BAH     0001H     UNIT         ?PR?CMD_UV_CTR_DEAL?PROTOCOL
+            CODE    23BBH     0001H     UNIT         ?PR?CMD_TIMER_CTR_DEAL?PROTOCOL
+            CODE    23BCH     0001H     UNIT         ?PR?CMD_GET_PM_DATAS_DEAL?PROTOCOL
+            CODE    23BDH     0001H     UNIT         ?PR?CMD_GET_ENE_DATAS_DEAL?PROTOCOL
+            CODE    23BEH     0001H     UNIT         ?PR?CMD_RT_SET_DEAL?PROTOCOL
+            CODE    23BFH     0001H     UNIT         ?PR?CMD_MEM_SET_DEAL?PROTOCOL
+            CODE    23C0H     0001H     UNIT         ?PR?CMD_REST_DEAL?PROTOCOL
+            CODE    23C1H     0001H     UNIT         ?PR?CMD_GET_DEVICE_INFO_DEAL?PROTOCOL
+            CODE    23C2H     0001H     UNIT         ?PR?CMD_WIFI_STA_CHANGE_DEAL?PROTOCOL
+            CODE    23C3H     0001H     UNIT         ?PR?TASK_DONOTHING?FSM
+            CODE    23C4H     0001H     UNIT         ?PR?_KEYACTIONDEAL?STATE_TEST
+            CODE    23C5H     0001H     UNIT         ?PR?_TASKEXE?STATE_TEST
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 4
 
 
-            CODE    23ADH     0001H     UNIT         ?PR?_MOTORCTR?STATE_TEST
-            CODE    23AEH     0001H     UNIT         ?PR?_RXDATADEAL?STATE_TEST
-            CODE    23AFH     0001H     UNIT         ?PR?_ENTEREVENTDEAL?STATE_TEST
-            CODE    23B0H     0001H     UNIT         ?PR?_EXITEVENTDEAL?STATE_TEST
+            CODE    23C6H     0001H     UNIT         ?PR?_TIMETICK?STATE_TEST
+            CODE    23C7H     0001H     UNIT         ?PR?_MOTORCTR?STATE_TEST
+            CODE    23C8H     0001H     UNIT         ?PR?_RXDATADEAL?STATE_TEST
+            CODE    23C9H     0001H     UNIT         ?PR?_ENTEREVENTDEAL?STATE_TEST
+            CODE    23CAH     0001H     UNIT         ?PR?_EXITEVENTDEAL?STATE_TEST
 
 
 
@@ -238,10 +239,10 @@ SEGMENT                                          BIT_GROUP          XDATA_GROUP
   +--> ?PR?_INITQUEUE?FIFO
 
 ?PR?HUMIDITY_DEVICEINIT?HUMIDITY              -----    -----      -----    -----
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 5
+
+
   +--> ?PR?_UTILS_GETADVALUE?HUMIDITY
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 5
-
-
   +--> ?PR?_HUMIDITY_AD2T?HUMIDITY
   +--> ?PR?_HUMIDITY_AD2H?HUMIDITY
 
@@ -298,10 +299,10 @@ SEGMENT                                          BIT_GROUP          XDATA_GROUP
 
 ?CO?PROTOCOL                                  -----    -----      -----    -----
   +--> ?PR?CMD_GET_SYS_STA_DEAL?PROTOCOL
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 6
+
+
   +--> ?PR?CMD_POWER_CTR_DEAL?PROTOCOL
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 6
-
-
   +--> ?PR?CMD_FAN_CTR_DEAL?PROTOCOL
   +--> ?PR?CMD_FIX_CTR_DEAL?PROTOCOL
   +--> ?PR?CMD_CLEAN_CTR_DEAL?PROTOCOL
@@ -358,10 +359,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1932H         PUBLIC        INT_USI1_Rx
   C:1B18H         PUBLIC        INT_USI1_Tx
   C:0FADH         PUBLIC        INT_BIT
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 7
+
+
   D:0087H         PUBLIC        PCON
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 7
-
-
   B:0090H.2       PUBLIC        P22
   B:0090H.3       PUBLIC        P23
   D:00F5H         PUBLIC        USI1DR
@@ -418,10 +419,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1FE3H         LINE#         65
   C:1FE7H         LINE#         67
   C:1FEAH         LINE#         68
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 8
+
+
   C:1FEDH         LINE#         69
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 8
-
-
   C:1FF0H         LINE#         70
   C:1FF2H         LINE#         72
   C:1FF2H         LINE#         74
@@ -478,10 +479,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:105FH         LINE#         164
   C:105FH         LINE#         165
   C:106BH         LINE#         166
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 9
+
+
   C:106BH         LINE#         167
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 9
-
-
   C:106EH         LINE#         168
   C:1074H         LINE#         169
   C:1077H         LINE#         170
@@ -538,10 +539,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:110EH         LINE#         235
   C:1110H         LINE#         236
   C:1110H         LINE#         237
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 10
+
+
   C:1110H         LINE#         238
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 10
-
-
   C:1110H         LINE#         239
   -------         ENDPROC       INT_BIT
   -------         ENDMOD        IT
@@ -598,10 +599,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   -------         DO            
   I:0013H         SYMBOL        taskIndex
   I:0014H         SYMBOL        taskIndexExt
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 11
+
+
   I:0015H         SYMBOL        HSampleT_Cnt
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 11
-
-
   -------         ENDDO         
   C:17CEH         LINE#         3
   C:17CEH         LINE#         4
@@ -658,10 +659,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:186BH         LINE#         76
   C:186EH         LINE#         77
   C:1874H         LINE#         78
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 12
+
+
   C:1874H         LINE#         79
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 12
-
-
   C:1876H         LINE#         81
   C:1879H         LINE#         83
   C:187CH         LINE#         84
@@ -681,11 +682,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   D:00A0H         PUBLIC        P4
   D:00B0H         PUBLIC        P5
   D:008DH         PUBLIC        WDTCR
-  C:2365H         SYMBOL        WDT_init
+  C:2386H         SYMBOL        WDT_init
   D:008EH         PUBLIC        WDTDR
   D:00DEH         PUBLIC        P0DB
   D:0097H         PUBLIC        BUZCR
-  C:238FH         SYMBOL        BUZ_init
+  C:23A7H         SYMBOL        BUZ_init
   D:008FH         PUBLIC        BUZDR
   D:00D8H         PUBLIC        LVRCR
   D:00A8H         PUBLIC        IE
@@ -701,7 +702,7 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   D:00C1H         PUBLIC        P3IO
   D:00C9H         PUBLIC        P4IO
   D:00D1H         PUBLIC        P5IO
-  C:2396H         SYMBOL        clock_init
+  C:23AEH         SYMBOL        clock_init
   D:00BDH         PUBLIC        T1ADRH
   D:00ACH         PUBLIC        P0PU
   D:009DH         PUBLIC        ADCCRH
@@ -716,12 +717,12 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   D:00BEH         PUBLIC        T1BDRL
   D:0095H         PUBLIC        P5PU
   D:008AH         PUBLIC        SCCR
-  C:22EDH         SYMBOL        _BUZ_OnOff
+  C:230EH         SYMBOL        _BUZ_OnOff
   D:009BH         PUBLIC        LCDCCR
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 13
+
+
   D:009AH         PUBLIC        LCDCRH
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 13
-
-
   D:00D3H         PUBLIC        P0FSRH
   D:0099H         PUBLIC        LCDCRL
   D:00D5H         PUBLIC        P1FSRH
@@ -732,16 +733,16 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   D:00DFH         PUBLIC        P15DB
   D:00ABH         PUBLIC        IE3
   D:0096H         PUBLIC        WTCR
-  C:234EH         SYMBOL        WT_init
+  C:236FH         SYMBOL        WT_init
   D:0089H         PUBLIC        WTDR
-  C:235BH         SYMBOL        Timer0_init
+  C:237CH         SYMBOL        Timer0_init
   C:0003H         SYMBOL        Timer1_init
-  C:2311H         SYMBOL        UART_init
+  C:2332H         SYMBOL        UART_init
   C:001EH         SYMBOL        WDT_clear
-  C:2331H         SYMBOL        _ADC_start
+  C:2352H         SYMBOL        _ADC_start
   C:2192H         PUBLIC        BSP_Init
   C:1E7FH         SYMBOL        port_init
-  C:2388H         SYMBOL        ADC_init
+  C:23A0H         SYMBOL        ADC_init
   D:00BBH         PUBLIC        T1CRH
   D:00BAH         PUBLIC        T1CRL
   C:009BH         SYMBOL        LCD_init
@@ -755,19 +756,19 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:00A6H         SYMBOL        BIT_init
   D:00C8H         PUBLIC        OSCCR
   -------         PROC          ADC_INIT
-  C:2388H         LINE#         4
-  C:2388H         LINE#         5
-  C:2388H         LINE#         7
-  C:238BH         LINE#         8
-  C:238EH         LINE#         9
+  C:23A0H         LINE#         4
+  C:23A0H         LINE#         5
+  C:23A0H         LINE#         7
+  C:23A3H         LINE#         8
+  C:23A6H         LINE#         9
   -------         ENDPROC       ADC_INIT
   -------         PROC          _ADC_START
   D:0007H         SYMBOL        ch
-  C:2331H         LINE#         11
-  C:2331H         LINE#         12
-  C:2331H         LINE#         14
-  C:233CH         LINE#         15
-  C:233FH         LINE#         16
+  C:2352H         LINE#         11
+  C:2352H         LINE#         12
+  C:2352H         LINE#         14
+  C:235DH         LINE#         15
+  C:2360H         LINE#         16
   -------         ENDPROC       _ADC_START
   -------         PROC          BIT_INIT
   C:00A6H         LINE#         18
@@ -778,22 +779,22 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:00AFH         LINE#         24
   C:00B2H         LINE#         25
   -------         ENDPROC       BIT_INIT
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 14
+
+
   -------         PROC          _BUZ_ONOFF
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 14
-
-
   D:0007H         SYMBOL        On
-  C:22EDH         LINE#         27
-  C:22EDH         LINE#         28
-  C:22EDH         LINE#         30
-  C:22FEH         LINE#         31
+  C:230EH         LINE#         27
+  C:230EH         LINE#         28
+  C:230EH         LINE#         30
+  C:231FH         LINE#         31
   -------         ENDPROC       _BUZ_ONOFF
   -------         PROC          BUZ_INIT
-  C:238FH         LINE#         33
-  C:238FH         LINE#         34
-  C:238FH         LINE#         37
-  C:2392H         LINE#         38
-  C:2395H         LINE#         39
+  C:23A7H         LINE#         33
+  C:23A7H         LINE#         34
+  C:23A7H         LINE#         37
+  C:23AAH         LINE#         38
+  C:23ADH         LINE#         39
   -------         ENDPROC       BUZ_INIT
   -------         PROC          LCD_INIT
   C:009BH         LINE#         41
@@ -804,164 +805,165 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:00A2H         LINE#         48
   -------         ENDPROC       LCD_INIT
   -------         PROC          TIMER0_INIT
-  C:235BH         LINE#         50
-  C:235BH         LINE#         51
-  C:235BH         LINE#         54
-  C:235EH         LINE#         55
-  C:2361H         LINE#         56
-  C:2364H         LINE#         57
+  C:237CH         LINE#         50
+  C:237CH         LINE#         51
+  C:237CH         LINE#         54
+  C:237FH         LINE#         55
+  C:2382H         LINE#         56
+  C:2385H         LINE#         57
   -------         ENDPROC       TIMER0_INIT
   -------         PROC          TIMER1_INIT
   C:0003H         LINE#         59
   C:0003H         LINE#         60
   C:0003H         LINE#         64
-  C:0006H         LINE#         66
-  C:0009H         LINE#         67
-  C:000CH         LINE#         68
-  C:000FH         LINE#         69
-  C:0012H         LINE#         70
-  C:0015H         LINE#         71
-  C:0018H         LINE#         72
+  C:0006H         LINE#         65
+  C:0009H         LINE#         66
+  C:000CH         LINE#         69
+  C:000FH         LINE#         70
+  C:0011H         LINE#         71
+  C:0014H         LINE#         72
+  C:0017H         LINE#         73
+  C:001AH         LINE#         74
   -------         ENDPROC       TIMER1_INIT
   -------         PROC          UART_INIT
-  C:2311H         LINE#         74
-  C:2311H         LINE#         75
-  C:2311H         LINE#         78
-  C:2314H         LINE#         79
-  C:2317H         LINE#         80
-  C:231AH         LINE#         81
-  C:231DH         LINE#         82
-  C:2320H         LINE#         85
+  C:2332H         LINE#         76
+  C:2332H         LINE#         77
+  C:2332H         LINE#         80
+  C:2335H         LINE#         81
+  C:2338H         LINE#         82
+  C:233BH         LINE#         83
+  C:233EH         LINE#         84
+  C:2341H         LINE#         87
   -------         ENDPROC       UART_INIT
   -------         PROC          WDT_CLEAR
-  C:001EH         LINE#         87
-  C:001EH         LINE#         88
   C:001EH         LINE#         89
-  C:0021H         LINE#         90
+  C:001EH         LINE#         90
+  C:001EH         LINE#         91
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 15
+
+
+  C:0021H         LINE#         92
   -------         ENDPROC       WDT_CLEAR
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 15
-
-
   -------         PROC          WDT_INIT
-  C:2365H         LINE#         92
-  C:2365H         LINE#         93
-  C:2365H         LINE#         95
-  C:2368H         LINE#         96
-  C:236BH         LINE#         98
+  C:2386H         LINE#         94
+  C:2386H         LINE#         95
+  C:2386H         LINE#         97
+  C:2389H         LINE#         98
+  C:238CH         LINE#         100
   -------         ENDPROC       WDT_INIT
   -------         PROC          WT_INIT
-  C:234EH         LINE#         101
-  C:234EH         LINE#         102
-  C:234EH         LINE#         104
-  C:2351H         LINE#         105
-  C:2354H         LINE#         106
-  C:2357H         LINE#         107
-  C:235AH         LINE#         108
+  C:236FH         LINE#         103
+  C:236FH         LINE#         104
+  C:236FH         LINE#         106
+  C:2372H         LINE#         107
+  C:2375H         LINE#         108
+  C:2378H         LINE#         109
+  C:237BH         LINE#         110
   -------         ENDPROC       WT_INIT
   -------         PROC          CLOCK_INIT
-  C:2396H         LINE#         110
-  C:2396H         LINE#         111
-  C:2396H         LINE#         113
-  C:2399H         LINE#         114
-  C:239CH         LINE#         115
+  C:23AEH         LINE#         112
+  C:23AEH         LINE#         113
+  C:23AEH         LINE#         115
+  C:23B1H         LINE#         116
+  C:23B4H         LINE#         117
   -------         ENDPROC       CLOCK_INIT
   -------         PROC          PORT_INIT
-  C:1E7FH         LINE#         117
-  C:1E7FH         LINE#         118
-  C:1E7FH         LINE#         155
-  C:1E82H         LINE#         156
-  C:1E85H         LINE#         157
-  C:1E88H         LINE#         158
-  C:1E8AH         LINE#         159
-  C:1E8CH         LINE#         161
-  C:1E8FH         LINE#         162
-  C:1E91H         LINE#         163
-  C:1E93H         LINE#         164
-  C:1E95H         LINE#         165
-  C:1E97H         LINE#         167
-  C:1E9AH         LINE#         168
-  C:1E9DH         LINE#         169
-  C:1E9FH         LINE#         170
-  C:1EA1H         LINE#         172
-  C:1EA4H         LINE#         173
-  C:1EA6H         LINE#         174
-  C:1EA8H         LINE#         176
-  C:1EABH         LINE#         177
-  C:1EAEH         LINE#         178
-  C:1EB0H         LINE#         179
-  C:1EB2H         LINE#         181
-  C:1EB5H         LINE#         182
-  C:1EB7H         LINE#         183
-  C:1EB9H         LINE#         186
-  C:1EBBH         LINE#         187
-  C:1EBEH         LINE#         188
-  C:1EC0H         LINE#         189
-  C:1EC3H         LINE#         190
-  C:1EC5H         LINE#         191
-  C:1EC8H         LINE#         192
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 16
+  C:1E7FH         LINE#         119
+  C:1E7FH         LINE#         120
+  C:1E7FH         LINE#         157
+  C:1E82H         LINE#         158
+  C:1E85H         LINE#         159
+  C:1E88H         LINE#         160
+  C:1E8AH         LINE#         161
+  C:1E8CH         LINE#         163
+  C:1E8FH         LINE#         164
+  C:1E91H         LINE#         165
+  C:1E93H         LINE#         166
+  C:1E95H         LINE#         167
+  C:1E97H         LINE#         169
+  C:1E9AH         LINE#         170
+  C:1E9DH         LINE#         171
+  C:1E9FH         LINE#         172
+  C:1EA1H         LINE#         174
+  C:1EA4H         LINE#         175
+  C:1EA6H         LINE#         176
+  C:1EA8H         LINE#         178
+  C:1EABH         LINE#         179
+  C:1EAEH         LINE#         180
+  C:1EB0H         LINE#         181
+  C:1EB2H         LINE#         183
+  C:1EB5H         LINE#         184
+  C:1EB7H         LINE#         185
+  C:1EB9H         LINE#         188
+  C:1EBBH         LINE#         189
+  C:1EBEH         LINE#         190
+  C:1EC0H         LINE#         191
+  C:1EC3H         LINE#         192
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 16
 
 
-  C:1ECAH         LINE#         193
-  C:1ECCH         LINE#         194
-  C:1ECFH         LINE#         195
+  C:1EC5H         LINE#         193
+  C:1EC8H         LINE#         194
+  C:1ECAH         LINE#         195
+  C:1ECCH         LINE#         196
+  C:1ECFH         LINE#         197
   -------         ENDPROC       PORT_INIT
   -------         PROC          BSP_INIT
-  C:2192H         LINE#         197
-  C:2192H         LINE#         198
   C:2192H         LINE#         199
-  C:2195H         LINE#         201
-  C:2198H         LINE#         202
-  C:219BH         LINE#         203
-  C:219EH         LINE#         204
-  C:21A1H         LINE#         205
-  C:21A4H         LINE#         206
-  C:21A7H         LINE#         207
-  C:21AAH         LINE#         208
-  C:21ADH         LINE#         209
-  C:21B0H         LINE#         210
-  C:21B3H         LINE#         211
-  C:21B6H         LINE#         212
-  C:21B9H         LINE#         213
-  C:21BCH         LINE#         214
+  C:2192H         LINE#         200
+  C:2192H         LINE#         201
+  C:2195H         LINE#         203
+  C:2198H         LINE#         204
+  C:219BH         LINE#         205
+  C:219EH         LINE#         206
+  C:21A1H         LINE#         207
+  C:21A4H         LINE#         208
+  C:21A7H         LINE#         209
+  C:21AAH         LINE#         210
+  C:21ADH         LINE#         211
+  C:21B0H         LINE#         212
+  C:21B3H         LINE#         213
+  C:21B6H         LINE#         214
+  C:21B9H         LINE#         215
+  C:21BCH         LINE#         216
   -------         ENDPROC       BSP_INIT
   -------         ENDMOD        BSP_INIT
 
   -------         MODULE        AIP1944
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:2252H         PUBLIC        _AIP1944_WriteByte
+  C:2273H         PUBLIC        _AIP1944_WriteByte
   B:00A0H.0       PUBLIC        P40
   B:00A0H.1       PUBLIC        P41
   B:00A0H.2       PUBLIC        P42
   C:1ED0H         PUBLIC        _Aip1944_WriteDispDatas
-  X:0164H         PUBLIC        Aip1944_BrightnessLevel
+  X:0166H         PUBLIC        Aip1944_BrightnessLevel
   -------         PROC          _AIP1944_WRITEBYTE
   D:0007H         SYMBOL        _byte
   -------         DO            
   D:0006H         SYMBOL        i
   -------         ENDDO         
-  C:2252H         LINE#         36
-  C:2252H         LINE#         37
-  C:2252H         LINE#         40
-  C:2254H         LINE#         41
-  C:2254H         LINE#         42
-  C:2258H         LINE#         43
-  C:2258H         LINE#         44
-  C:225AH         LINE#         45
-  C:225CH         LINE#         47
-  C:225CH         LINE#         48
-  C:225EH         LINE#         49
-  C:225EH         LINE#         51
-  C:2260H         LINE#         53
-  C:2264H         LINE#         55
-  C:2266H         LINE#         56
-  C:226BH         LINE#         57
+  C:2273H         LINE#         36
+  C:2273H         LINE#         37
+  C:2273H         LINE#         40
+  C:2275H         LINE#         41
+  C:2275H         LINE#         42
+  C:2279H         LINE#         43
+  C:2279H         LINE#         44
+  C:227BH         LINE#         45
+  C:227DH         LINE#         47
+  C:227DH         LINE#         48
+  C:227FH         LINE#         49
+  C:227FH         LINE#         51
+  C:2281H         LINE#         53
+  C:2285H         LINE#         55
+  C:2287H         LINE#         56
+  C:228CH         LINE#         57
   -------         ENDPROC       _AIP1944_WRITEBYTE
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 17
+
+
   -------         PROC          _AIP1944_WRITEDISPDATAS
   X:0140H         SYMBOL        dats
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 17
-
-
   D:0005H         SYMBOL        len
   X:0144H         SYMBOL        addr
   -------         DO            
@@ -988,7 +990,7 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
 
   -------         MODULE        DISPLAY
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:22B1H         PUBLIC        _Display_SetAll
+  C:22D2H         PUBLIC        _Display_SetAll
   C:1646H         PUBLIC        _Display_ShowRT
   C:11ADH         PUBLIC        PM_COM10_E_nums
   C:11F6H         PUBLIC        RT_COM_H1_E_nums
@@ -1017,11 +1019,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:11A3H         PUBLIC        PM_COM10_nums
   C:2130H         PUBLIC        Display_Ctr
   C:11EBH         PUBLIC        RT_COM_H1_nums
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 18
+
+
   B:0020H.1       PUBLIC        Display_FlashOn
   C:1222H         PUBLIC        RT_COM_M1_nums
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 18
-
-
   C:117BH         PUBLIC        PM_COM1000_E_nums
   C:1135H         PUBLIC        T_COM1_nums
   C:118FH         PUBLIC        PM_COM100_E1_nums
@@ -1029,7 +1031,7 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:112BH         PUBLIC        T_COM10_EXT_nums
   C:120CH         PUBLIC        RT_COM_M10_E1_nums
   C:1217H         PUBLIC        RT_COM_M10_E2_nums
-  C:21E1H         PUBLIC        Display_SetLine
+  C:2202H         PUBLIC        Display_SetLine
   C:1D12H         PUBLIC        _Display_ShowTemperature
   X:0119H         PUBLIC        Display_LedsEn
   -------         PROC          _DISPLAY_SETALL
@@ -1037,27 +1039,27 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   -------         DO            
   D:0006H         SYMBOL        i
   -------         ENDDO         
-  C:22B1H         LINE#         11
-  C:22B1H         LINE#         12
-  C:22B1H         LINE#         15
-  C:22B3H         LINE#         16
-  C:22B3H         LINE#         17
-  C:22BFH         LINE#         18
-  C:22C4H         LINE#         19
+  C:22D2H         LINE#         11
+  C:22D2H         LINE#         12
+  C:22D2H         LINE#         15
+  C:22D4H         LINE#         16
+  C:22D4H         LINE#         17
+  C:22E0H         LINE#         18
+  C:22E5H         LINE#         19
   -------         ENDPROC       _DISPLAY_SETALL
   -------         PROC          DISPLAY_SETLINE
-  C:21E1H         LINE#         22
-  C:21E1H         LINE#         23
-  C:21E1H         LINE#         24
-  C:21E7H         LINE#         25
-  C:21E9H         LINE#         26
-  C:21EBH         LINE#         28
-  C:21EFH         LINE#         29
-  C:21F1H         LINE#         30
-  C:21F3H         LINE#         32
-  C:21FAH         LINE#         33
-  C:21FEH         LINE#         34
-  C:2200H         LINE#         35
+  C:2202H         LINE#         22
+  C:2202H         LINE#         23
+  C:2202H         LINE#         24
+  C:2208H         LINE#         25
+  C:220AH         LINE#         26
+  C:220CH         LINE#         28
+  C:2210H         LINE#         29
+  C:2212H         LINE#         30
+  C:2214H         LINE#         32
+  C:221BH         LINE#         33
+  C:221FH         LINE#         34
+  C:2221H         LINE#         35
   -------         ENDPROC       DISPLAY_SETLINE
   -------         PROC          _DISPLAY_CIRCLERUN
   D:0007H         SYMBOL        sp
@@ -1077,11 +1079,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1C47H         LINE#         49
   C:1C49H         LINE#         50
   C:1C49H         LINE#         51
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 19
+
+
   C:1C49H         LINE#         53
   C:1C50H         LINE#         55
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 19
-
-
   C:1C7BH         LINE#         56
   C:1C7BH         LINE#         57
   C:1C7BH         LINE#         58
@@ -1137,11 +1139,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   D:0004H         SYMBOL        v1
   -------         ENDDO         
   C:1D12H         LINE#         220
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 20
+
+
   C:1D12H         LINE#         221
   C:1D12H         LINE#         225
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 20
-
-
   C:1D18H         LINE#         226
   C:1D18H         LINE#         227
   C:1D1AH         LINE#         228
@@ -1197,11 +1199,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1369H         LINE#         565
   C:137EH         LINE#         566
   C:1393H         LINE#         567
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 21
+
+
   C:13A0H         LINE#         596
   C:13A0H         LINE#         597
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 21
-
-
   C:13B5H         LINE#         598
   C:13C7H         LINE#         599
   C:13C7H         LINE#         602
@@ -1257,11 +1259,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:16BEH         LINE#         855
   C:16C4H         LINE#         856
   C:16C4H         LINE#         857
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 22
+
+
   C:16D5H         LINE#         858
   C:16E6H         LINE#         859
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 22
-
-
   C:16F8H         LINE#         861
   C:1702H         LINE#         862
   C:1713H         LINE#         863
@@ -1317,43 +1319,43 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
 
   -------         MODULE        BUZZER
   C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 23
+
+
   D:0097H         PUBLIC        BUZCR
   X:0147H         SYMBOL        Buzz_times
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 23
-
-
   C:2042H         PUBLIC        Buzz_Ctr
-  C:2201H         PUBLIC        _Buzz_Set
+  C:2222H         PUBLIC        _Buzz_Set
   B:0021H.0       SYMBOL        Buzz_En
   X:0148H         SYMBOL        Buzz_off
   X:0149H         SYMBOL        Buzz_cnt
   X:014AH         SYMBOL        Buzz_on
-  C:22FFH         PUBLIC        Buzz_DeviceInit
+  C:2320H         PUBLIC        Buzz_DeviceInit
   -------         PROC          BUZZ_DEVICEINIT
-  C:22FFH         LINE#         11
-  C:22FFH         LINE#         12
-  C:22FFH         LINE#         13
-  C:2301H         LINE#         15
-  C:2306H         LINE#         16
-  C:230AH         LINE#         17
-  C:230EH         LINE#         19
-  C:2310H         LINE#         20
+  C:2320H         LINE#         11
+  C:2320H         LINE#         12
+  C:2320H         LINE#         13
+  C:2322H         LINE#         15
+  C:2327H         LINE#         16
+  C:232BH         LINE#         17
+  C:232FH         LINE#         19
+  C:2331H         LINE#         20
   -------         ENDPROC       BUZZ_DEVICEINIT
   -------         PROC          _BUZZ_SET
   D:0007H         SYMBOL        times
   D:0005H         SYMBOL        on
   D:0003H         SYMBOL        off
-  C:2201H         LINE#         22
-  C:2201H         LINE#         23
-  C:2201H         LINE#         24
-  C:2206H         LINE#         25
-  C:2206H         LINE#         26
-  C:2209H         LINE#         27
-  C:2209H         LINE#         29
-  C:220EH         LINE#         30
-  C:2213H         LINE#         31
-  C:2218H         LINE#         33
-  C:221BH         LINE#         34
+  C:2222H         LINE#         22
+  C:2222H         LINE#         23
+  C:2222H         LINE#         24
+  C:2227H         LINE#         25
+  C:2227H         LINE#         26
+  C:222AH         LINE#         27
+  C:222AH         LINE#         29
+  C:222FH         LINE#         30
+  C:2234H         LINE#         31
+  C:2239H         LINE#         33
+  C:223CH         LINE#         34
   -------         ENDPROC       _BUZZ_SET
   -------         PROC          BUZZ_CTR
   C:2042H         LINE#         36
@@ -1377,11 +1379,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:2073H         LINE#         56
   C:2073H         LINE#         57
   C:2075H         LINE#         58
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 24
+
+
   C:2076H         LINE#         60
   C:2076H         LINE#         61
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 24
-
-
   C:207CH         LINE#         62
   C:2081H         LINE#         63
   C:2081H         LINE#         64
@@ -1407,11 +1409,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1BA7H         PUBLIC        Humidity_GetCurrentT
   C:002BH         SYMBOL        _Humidity_GetH
   C:01A0H         SYMBOL        H_table45
-  C:2321H         PUBLIC        Humidity_DeviceInit
+  C:2342H         PUBLIC        Humidity_DeviceInit
   C:0B28H         SYMBOL        H_tables
   D:009FH         PUBLIC        ADCDRH
   D:009CH         PUBLIC        ADCCRL
-  C:2286H         PUBLIC        _Utils_GetAdValue
+  C:22A7H         PUBLIC        _Utils_GetAdValue
   C:00B6H         SYMBOL        T_table
   I:0016H         PUBLIC        Humidity_AdHBuf
   C:01DDH         SYMBOL        H_Table6
@@ -1419,7 +1421,7 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:0257H         SYMBOL        H_Table8
   C:0294H         SYMBOL        H_Table9
   C:1548H         SYMBOL        _Humidity_Ad2H
-  C:22C5H         SYMBOL        _Humidity_Ad2T
+  C:22E6H         SYMBOL        _Humidity_Ad2T
   I:0017H         PUBLIC        Humidity_CurrentH
   C:0163H         SYMBOL        H_table5
   I:0018H         PUBLIC        Humidity_CurrentT
@@ -1437,11 +1439,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:080FH         SYMBOL        H_Table32
   C:05EAH         SYMBOL        H_Table23
   C:03C5H         SYMBOL        H_Table14
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 25
+
+
   C:0A71H         SYMBOL        H_Table42
   C:084CH         SYMBOL        H_Table33
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 25
-
-
   C:0627H         SYMBOL        H_Table24
   C:0402H         SYMBOL        H_Table15
   C:0AAEH         SYMBOL        H_Table43
@@ -1460,26 +1462,26 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:04F6H         SYMBOL        H_Table19
   -------         PROC          _UTILS_GETADVALUE
   D:0007H         SYMBOL        ch
-  C:2286H         LINE#         3082
-  C:2286H         LINE#         3083
-  C:2286H         LINE#         3086
-  C:2291H         LINE#         3087
-  C:2294H         LINE#         3089
-  C:2299H         LINE#         3094
-  C:229BH         LINE#         3095
+  C:22A7H         LINE#         3082
+  C:22A7H         LINE#         3083
+  C:22A7H         LINE#         3086
+  C:22B2H         LINE#         3087
+  C:22B5H         LINE#         3089
+  C:22BAH         LINE#         3094
+  C:22BCH         LINE#         3095
   -------         ENDPROC       _UTILS_GETADVALUE
   -------         PROC          _HUMIDITY_AD2T
   D:0007H         SYMBOL        adValue
-  C:22C5H         LINE#         3099
-  C:22C5H         LINE#         3100
-  C:22C5H         LINE#         3101
-  C:22CBH         LINE#         3102
-  C:22CBH         LINE#         3103
-  C:22CFH         LINE#         3104
-  C:22D0H         LINE#         3106
-  C:22D0H         LINE#         3107
-  C:22D8H         LINE#         3108
-  C:22D8H         LINE#         3109
+  C:22E6H         LINE#         3099
+  C:22E6H         LINE#         3100
+  C:22E6H         LINE#         3101
+  C:22ECH         LINE#         3102
+  C:22ECH         LINE#         3103
+  C:22F0H         LINE#         3104
+  C:22F1H         LINE#         3106
+  C:22F1H         LINE#         3107
+  C:22F9H         LINE#         3108
+  C:22F9H         LINE#         3109
   -------         ENDPROC       _HUMIDITY_AD2T
   -------         PROC          HUMIDITY_GETCURRENTT
   -------         DO            
@@ -1497,11 +1499,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1BB6H         LINE#         3124
   C:1BB8H         LINE#         3125
   C:1BB8H         LINE#         3127
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 26
+
+
   C:1BC2H         LINE#         3128
   C:1BC2H         LINE#         3129
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 26
-
-
   C:1BC4H         LINE#         3130
   C:1BC4H         LINE#         3132
   C:1BD1H         LINE#         3133
@@ -1557,11 +1559,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   -------         ENDDO         
   C:1548H         LINE#         3178
   C:154DH         LINE#         3179
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 27
+
+
   C:154DH         LINE#         3183
   C:1558H         LINE#         3184
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 27
-
-
   C:1558H         LINE#         3185
   C:155CH         LINE#         3186
   C:155FH         LINE#         3187
@@ -1617,11 +1619,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1A40H         LINE#         3245
   C:1A40H         LINE#         3246
   C:1A50H         LINE#         3247
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 28
+
+
   C:1A55H         LINE#         3248
   C:1A5FH         LINE#         3249
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 28
-
-
   C:1A63H         LINE#         3250
   C:1A65H         LINE#         3252
   C:1A65H         LINE#         3253
@@ -1633,10 +1635,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1A7DH         LINE#         3260
   -------         ENDPROC       HUMIDITY_GETCURRENTH
   -------         PROC          HUMIDITY_DEVICEINIT
-  C:2321H         LINE#         3262
-  C:2321H         LINE#         3263
-  C:2321H         LINE#         3264
-  C:2329H         LINE#         3265
+  C:2342H         LINE#         3262
+  C:2342H         LINE#         3263
+  C:2342H         LINE#         3264
+  C:234AH         LINE#         3265
   -------         ENDPROC       HUMIDITY_DEVICEINIT
   -------         ENDMOD        HUMIDITY
 
@@ -1651,16 +1653,16 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   X:012CH         SYMBOL        Dust_readyCountdown
   C:1714H         PUBLIC        Dust_LevelUpdate
   C:1885H         PUBLIC        Dust_DataUpdate
-  C:22D9H         PUBLIC        Dust_DeviceInit
+  C:22FAH         PUBLIC        Dust_DeviceInit
   B:0020H.3       PUBLIC        Dust_DataValid
   X:012EH         PUBLIC        Dust_Level
   -------         PROC          DUST_DEVICEINIT
-  C:22D9H         LINE#         21
-  C:22D9H         LINE#         22
-  C:22D9H         LINE#         23
-  C:22E3H         LINE#         24
-  C:22E5H         LINE#         25
-  C:22ECH         LINE#         26
+  C:22FAH         LINE#         21
+  C:22FAH         LINE#         22
+  C:22FAH         LINE#         23
+  C:2304H         LINE#         24
+  C:2306H         LINE#         25
+  C:230DH         LINE#         26
   -------         ENDPROC       DUST_DEVICEINIT
   -------         PROC          DUST_GETRTLEVEL
   -------         DO            
@@ -1677,11 +1679,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1F3DH         LINE#         39
   C:1F3FH         LINE#         40
   C:1F41H         LINE#         41
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 29
+
+
   C:1F4AH         LINE#         42
   C:1F4AH         LINE#         43
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 29
-
-
   C:1F4CH         LINE#         44
   C:1F4EH         LINE#         45
   C:1F57H         LINE#         46
@@ -1737,11 +1739,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   -------         DO            
   X:0122H         SYMBOL        upperHoldCntForFan
   X:0123H         SYMBOL        lowerHoldCntForFan
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 30
+
+
   X:0124H         SYMBOL        lowerHoldCnt
   D:0007H         SYMBOL        levelCur
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 30
-
-
   -------         ENDDO         
   C:1714H         LINE#         101
   C:1714H         LINE#         102
@@ -1797,34 +1799,34 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:17C6H         LINE#         176
   C:17C6H         LINE#         177
   C:17CBH         LINE#         178
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 31
+
+
   C:17CDH         LINE#         179
   C:17CDH         LINE#         180
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 31
-
-
   -------         ENDPROC       DUST_LEVELUPDATE
   -------         ENDMOD        DUST
 
   -------         MODULE        FIFO
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:2340H         PUBLIC        _InitQueue
-  C:226CH         PUBLIC        _QueueLen
+  C:2361H         PUBLIC        _InitQueue
+  C:228DH         PUBLIC        _QueueLen
   C:1DD0H         PUBLIC        _Dequeue
-  C:229CH         PUBLIC        _QueueIsEmpty
+  C:22BDH         PUBLIC        _QueueIsEmpty
   C:20C3H         PUBLIC        _QueueIsFull
   C:1CB1H         PUBLIC        _Enqueue
   -------         PROC          _INITQUEUE
   D:0001H         SYMBOL        queue
-  C:2340H         LINE#         3
-  C:2340H         LINE#         4
-  C:2340H         LINE#         5
+  C:2361H         LINE#         3
+  C:2361H         LINE#         4
+  C:2361H         LINE#         5
   -------         ENDPROC       _INITQUEUE
   -------         PROC          _QUEUEISEMPTY
   D:0001H         SYMBOL        queue
-  C:229CH         LINE#         8
-  C:229CH         LINE#         9
-  C:229CH         LINE#         10
-  C:22B0H         LINE#         11
+  C:22BDH         LINE#         8
+  C:22BDH         LINE#         9
+  C:22BDH         LINE#         10
+  C:22D1H         LINE#         11
   -------         ENDPROC       _QUEUEISEMPTY
   -------         PROC          _QUEUEISFULL
   X:015DH         SYMBOL        queue
@@ -1835,10 +1837,10 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   -------         ENDPROC       _QUEUEISFULL
   -------         PROC          _QUEUELEN
   D:0001H         SYMBOL        queue
-  C:226CH         LINE#         18
-  C:226CH         LINE#         19
-  C:226CH         LINE#         20
-  C:2285H         LINE#         21
+  C:228DH         LINE#         18
+  C:228DH         LINE#         19
+  C:228DH         LINE#         20
+  C:22A6H         LINE#         21
   -------         ENDPROC       _QUEUELEN
   -------         PROC          _ENQUEUE
   X:014BH         SYMBOL        queue
@@ -1857,11 +1859,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   X:014FH         SYMBOL        queue
   -------         DO            
   X:0152H         SYMBOL        result
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 32
+
+
   -------         ENDDO         
   C:1DD0H         LINE#         34
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 32
-
-
   C:1DDBH         LINE#         35
   C:1DDBH         LINE#         38
   C:1DDEH         LINE#         39
@@ -1877,29 +1879,29 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   -------         MODULE        PROTOCOL
   C:0000H         SYMBOL        _ICE_DUMMY_
   B:0021H.3       PUBLIC        isWaitingHeader
-  C:001AH         PUBLIC        CMD_POWER_CTR_DEAL
-  C:23A3H         PUBLIC        CMD_GET_ENE_DATAS_DEAL
-  C:239FH         PUBLIC        CMD_AION_CTR_DEAL
-  C:23A4H         PUBLIC        CMD_RT_SET_DEAL
-  C:23A0H         PUBLIC        CMD_UV_CTR_DEAL
-  C:23A7H         PUBLIC        CMD_GET_DEVICE_INFO_DEAL
-  C:23A8H         PUBLIC        CMD_WIFI_STA_CHANGE_DEAL
-  C:0019H         PUBLIC        CMD_GET_SYS_STA_DEAL
+  C:23B5H         PUBLIC        CMD_POWER_CTR_DEAL
+  C:23BDH         PUBLIC        CMD_GET_ENE_DATAS_DEAL
+  C:23B9H         PUBLIC        CMD_AION_CTR_DEAL
+  C:23BEH         PUBLIC        CMD_RT_SET_DEAL
+  C:23BAH         PUBLIC        CMD_UV_CTR_DEAL
+  C:23C1H         PUBLIC        CMD_GET_DEVICE_INFO_DEAL
+  C:23C2H         PUBLIC        CMD_WIFI_STA_CHANGE_DEAL
+  C:0022H         PUBLIC        CMD_GET_SYS_STA_DEAL
   C:2163H         PUBLIC        CMD_DUMMY_DEAL
-  C:0022H         PUBLIC        CMD_FAN_CTR_DEAL
+  C:23B6H         PUBLIC        CMD_FAN_CTR_DEAL
   C:0E1AH         PUBLIC        Protocol_Task
-  C:2380H         PUBLIC        Protocol_Init
-  C:23A5H         SYMBOL        CMD_MEM_SET_DEAL
-  C:23A2H         SYMBOL        CMD_GET_PM_DATAS_DEAL
-  C:239EH         SYMBOL        CMD_CLEAN_CTR_DEAL
-  C:239DH         SYMBOL        CMD_FIX_CTR_DEAL
+  C:2398H         PUBLIC        Protocol_Init
+  C:23BFH         SYMBOL        CMD_MEM_SET_DEAL
+  C:23BCH         SYMBOL        CMD_GET_PM_DATAS_DEAL
+  C:23B8H         SYMBOL        CMD_CLEAN_CTR_DEAL
+  C:23B7H         SYMBOL        CMD_FIX_CTR_DEAL
   X:0156H         SYMBOL        rxIndex
-  C:23A6H         SYMBOL        CMD_REST_DEAL
+  C:23C0H         SYMBOL        CMD_REST_DEAL
   C:1F6BH         PUBLIC        ProtocolTab
-  C:23A1H         SYMBOL        CMD_TIMER_CTR_DEAL
+  C:23BBH         SYMBOL        CMD_TIMER_CTR_DEAL
   -------         PROC          CMD_DUMMY_DEAL
   -------         DO            
-  X:0165H         SYMBOL        sum
+  X:0167H         SYMBOL        sum
   -------         ENDDO         
   C:2163H         LINE#         40
   C:2163H         LINE#         41
@@ -1908,92 +1910,92 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:218FH         LINE#         47
   -------         ENDPROC       CMD_DUMMY_DEAL
   -------         PROC          CMD_GET_SYS_STA_DEAL
-  C:0019H         LINE#         50
-  C:0019H         LINE#         51
-  C:0019H         LINE#         53
+  C:0022H         LINE#         50
+  C:0022H         LINE#         51
+  C:0022H         LINE#         53
   -------         ENDPROC       CMD_GET_SYS_STA_DEAL
   -------         PROC          CMD_POWER_CTR_DEAL
-  C:001AH         LINE#         54
-  C:001AH         LINE#         55
-  C:001AH         LINE#         57
+  C:23B5H         LINE#         54
+  C:23B5H         LINE#         55
+  C:23B5H         LINE#         57
   -------         ENDPROC       CMD_POWER_CTR_DEAL
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 33
+
+
   -------         PROC          CMD_FAN_CTR_DEAL
-  C:0022H         LINE#         58
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 33
-
-
-  C:0022H         LINE#         59
-  C:0022H         LINE#         61
+  C:23B6H         LINE#         58
+  C:23B6H         LINE#         59
+  C:23B6H         LINE#         61
   -------         ENDPROC       CMD_FAN_CTR_DEAL
   -------         PROC          CMD_FIX_CTR_DEAL
-  C:239DH         LINE#         62
-  C:239DH         LINE#         63
-  C:239DH         LINE#         65
+  C:23B7H         LINE#         62
+  C:23B7H         LINE#         63
+  C:23B7H         LINE#         65
   -------         ENDPROC       CMD_FIX_CTR_DEAL
   -------         PROC          CMD_CLEAN_CTR_DEAL
-  C:239EH         LINE#         66
-  C:239EH         LINE#         67
-  C:239EH         LINE#         69
+  C:23B8H         LINE#         66
+  C:23B8H         LINE#         67
+  C:23B8H         LINE#         69
   -------         ENDPROC       CMD_CLEAN_CTR_DEAL
   -------         PROC          CMD_AION_CTR_DEAL
-  C:239FH         LINE#         70
-  C:239FH         LINE#         71
-  C:239FH         LINE#         73
+  C:23B9H         LINE#         70
+  C:23B9H         LINE#         71
+  C:23B9H         LINE#         73
   -------         ENDPROC       CMD_AION_CTR_DEAL
   -------         PROC          CMD_UV_CTR_DEAL
-  C:23A0H         LINE#         74
-  C:23A0H         LINE#         75
-  C:23A0H         LINE#         77
+  C:23BAH         LINE#         74
+  C:23BAH         LINE#         75
+  C:23BAH         LINE#         77
   -------         ENDPROC       CMD_UV_CTR_DEAL
   -------         PROC          CMD_TIMER_CTR_DEAL
-  C:23A1H         LINE#         78
-  C:23A1H         LINE#         79
-  C:23A1H         LINE#         81
+  C:23BBH         LINE#         78
+  C:23BBH         LINE#         79
+  C:23BBH         LINE#         81
   -------         ENDPROC       CMD_TIMER_CTR_DEAL
   -------         PROC          CMD_GET_PM_DATAS_DEAL
-  C:23A2H         LINE#         82
-  C:23A2H         LINE#         83
-  C:23A2H         LINE#         85
+  C:23BCH         LINE#         82
+  C:23BCH         LINE#         83
+  C:23BCH         LINE#         85
   -------         ENDPROC       CMD_GET_PM_DATAS_DEAL
   -------         PROC          CMD_GET_ENE_DATAS_DEAL
-  C:23A3H         LINE#         86
-  C:23A3H         LINE#         87
-  C:23A3H         LINE#         89
+  C:23BDH         LINE#         86
+  C:23BDH         LINE#         87
+  C:23BDH         LINE#         89
   -------         ENDPROC       CMD_GET_ENE_DATAS_DEAL
   -------         PROC          CMD_RT_SET_DEAL
-  C:23A4H         LINE#         90
-  C:23A4H         LINE#         91
-  C:23A4H         LINE#         93
+  C:23BEH         LINE#         90
+  C:23BEH         LINE#         91
+  C:23BEH         LINE#         93
   -------         ENDPROC       CMD_RT_SET_DEAL
   -------         PROC          CMD_MEM_SET_DEAL
-  C:23A5H         LINE#         94
-  C:23A5H         LINE#         95
-  C:23A5H         LINE#         97
+  C:23BFH         LINE#         94
+  C:23BFH         LINE#         95
+  C:23BFH         LINE#         97
   -------         ENDPROC       CMD_MEM_SET_DEAL
   -------         PROC          CMD_REST_DEAL
-  C:23A6H         LINE#         98
-  C:23A6H         LINE#         99
-  C:23A6H         LINE#         101
+  C:23C0H         LINE#         98
+  C:23C0H         LINE#         99
+  C:23C0H         LINE#         101
   -------         ENDPROC       CMD_REST_DEAL
   -------         PROC          CMD_GET_DEVICE_INFO_DEAL
-  C:23A7H         LINE#         102
-  C:23A7H         LINE#         103
-  C:23A7H         LINE#         105
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 34
+  C:23C1H         LINE#         102
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 34
 
 
+  C:23C1H         LINE#         103
+  C:23C1H         LINE#         105
   -------         ENDPROC       CMD_GET_DEVICE_INFO_DEAL
   -------         PROC          CMD_WIFI_STA_CHANGE_DEAL
-  C:23A8H         LINE#         106
-  C:23A8H         LINE#         107
-  C:23A8H         LINE#         109
+  C:23C2H         LINE#         106
+  C:23C2H         LINE#         107
+  C:23C2H         LINE#         109
   -------         ENDPROC       CMD_WIFI_STA_CHANGE_DEAL
   -------         PROC          PROTOCOL_INIT
-  C:2380H         LINE#         141
-  C:2380H         LINE#         142
-  C:2380H         LINE#         143
-  C:2382H         LINE#         144
-  C:2387H         LINE#         145
+  C:2398H         LINE#         141
+  C:2398H         LINE#         142
+  C:2398H         LINE#         143
+  C:239AH         LINE#         144
+  C:239FH         LINE#         145
   -------         ENDPROC       PROTOCOL_INIT
   -------         PROC          PROTOCOL_TASK
   -------         DO            
@@ -2037,11 +2039,11 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:0ECAH         LINE#         195
   C:0ECAH         LINE#         196
   C:0EDAH         LINE#         197
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 35
+
+
   C:0EDAH         LINE#         198
   C:0EEEH         LINE#         199
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 35
-
-
   C:0EFCH         LINE#         200
   C:0EFEH         LINE#         201
   C:0F06H         LINE#         202
@@ -2090,18 +2092,18 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   B:0020H.4       PUBLIC        Rx_QueueDataExist
   X:0072H         PUBLIC        Rx_Buf
   X:00A5H         PUBLIC        Tx_Buf
-  C:236EH         PUBLIC        Uart_RxDatsDeal
+  C:238FH         PUBLIC        Uart_RxDatsDeal
   B:0020H.5       PUBLIC        Tx_Busy
   D:00EAH         PUBLIC        USI1CR2
   -------         PROC          UART_MEMORYINIT
   -------         DO            
   X:0000H         SYMBOL        Rx_queue
   X:0035H         SYMBOL        Tx_queue
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 36
+
+
   -------         ENDDO         
   C:20FCH         LINE#         15
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 36
-
-
   C:20FCH         LINE#         16
   C:20FCH         LINE#         20
   C:210DH         LINE#         21
@@ -2138,30 +2140,30 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:2041H         LINE#         57
   -------         ENDPROC       UART_SENDSTARTUP
   -------         PROC          UART_RXDATSDEAL
-  C:236EH         LINE#         59
-  C:236EH         LINE#         60
-  C:236EH         LINE#         61
-  C:2371H         LINE#         62
-  C:2371H         LINE#         63
-  C:2374H         LINE#         64
-  C:2376H         LINE#         65
-  C:2376H         LINE#         66
+  C:238FH         LINE#         59
+  C:238FH         LINE#         60
+  C:238FH         LINE#         61
+  C:2392H         LINE#         62
+  C:2392H         LINE#         63
+  C:2395H         LINE#         64
+  C:2397H         LINE#         65
+  C:2397H         LINE#         66
   -------         ENDPROC       UART_RXDATSDEAL
   -------         ENDMOD        UART
 
   -------         MODULE        FSM
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:23A9H         PUBLIC        Task_DoNothing
+  C:23C3H         PUBLIC        Task_DoNothing
   X:0162H         PUBLIC        currentState
-  C:221CH         SYMBOL        doNothing
+  C:223DH         SYMBOL        doNothing
   C:1E2DH         PUBLIC        _State_TransitionTo
   -------         PROC          TASK_DONOTHING
-  C:23A9H         LINE#         3
+  C:23C3H         LINE#         3
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 37
+
+
   -------         ENDPROC       TASK_DONOTHING
   -------         PROC          _STATE_TRANSITIONTO
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 37
-
-
   X:0140H         SYMBOL        state
   B:0020H.6       SYMBOL        desStateEnterEventEnable
   B:0020H.7       SYMBOL        currentStateExitEventEnable
@@ -2182,20 +2184,23 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
 
   -------         MODULE        STATE_TEST
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:23AFH         SYMBOL        _enterEventDeal
-  C:23AAH         SYMBOL        _keyActionDeal
-  C:2237H         PUBLIC        State_Test
-  C:23B0H         SYMBOL        _exitEventDeal
-  C:23ACH         SYMBOL        _timeTick
-  C:2377H         SYMBOL        _irDataDeal
-  C:23ABH         SYMBOL        _taskExe
-  C:23ADH         SYMBOL        _motorCtr
-  C:23AEH         SYMBOL        _rxDataDeal
+  C:23C9H         SYMBOL        _enterEventDeal
+  C:23C4H         SYMBOL        _keyActionDeal
+  C:2258H         PUBLIC        State_Test
+  X:0164H         PUBLIC        TestPWM
+  C:23CAH         SYMBOL        _exitEventDeal
+  C:23C6H         SYMBOL        _timeTick
+  D:00BFH         PUBLIC        T1BDRH
+  D:00BEH         PUBLIC        T1BDRL
+  C:21E1H         SYMBOL        _irDataDeal
+  C:23C5H         SYMBOL        _taskExe
+  C:23C7H         SYMBOL        _motorCtr
+  C:23C8H         SYMBOL        _rxDataDeal
   C:1238H         SYMBOL        _displayControl
   -------         PROC          _KEYACTIONDEAL
-  C:23AAH         LINE#         4
-  C:23AAH         LINE#         5
-  C:23AAH         LINE#         7
+  C:23C4H         LINE#         4
+  C:23C4H         LINE#         5
+  C:23C4H         LINE#         7
   -------         ENDPROC       _KEYACTIONDEAL
   -------         PROC          _DISPLAYCONTROL
   C:1238H         LINE#         9
@@ -2214,14 +2219,14 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1297H         LINE#         22
   C:129EH         LINE#         23
   C:12A1H         LINE#         25
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 38
+
+
   C:12ADH         LINE#         26
   C:12B4H         LINE#         27
   C:12C2H         LINE#         28
   C:12C9H         LINE#         29
   C:12D7H         LINE#         30
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 38
-
-
   C:12DAH         LINE#         31
   C:12E1H         LINE#         32
   C:12E8H         LINE#         33
@@ -2244,44 +2249,47 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:1347H         LINE#         56
   -------         ENDPROC       _DISPLAYCONTROL
   -------         PROC          _TASKEXE
-  C:23ABH         LINE#         58
-  C:23ABH         LINE#         59
-  C:23ABH         LINE#         61
+  C:23C5H         LINE#         58
+  C:23C5H         LINE#         59
+  C:23C5H         LINE#         61
   -------         ENDPROC       _TASKEXE
   -------         PROC          _TIMETICK
-  C:23ACH         LINE#         64
-  C:23ACH         LINE#         65
-  C:23ACH         LINE#         67
+  C:23C6H         LINE#         64
+  C:23C6H         LINE#         65
+  C:23C6H         LINE#         67
   -------         ENDPROC       _TIMETICK
   -------         PROC          _MOTORCTR
-  C:23ADH         LINE#         69
-  C:23ADH         LINE#         70
-  C:23ADH         LINE#         72
+  C:23C7H         LINE#         69
+  C:23C7H         LINE#         70
+  C:23C7H         LINE#         72
   -------         ENDPROC       _MOTORCTR
   -------         PROC          _IRDATADEAL
-  C:2377H         LINE#         74
-  C:2377H         LINE#         75
-  C:2377H         LINE#         76
+  C:21E1H         LINE#         75
+  C:21E1H         LINE#         76
+  C:21E1H         LINE#         77
+  C:21EFH         LINE#         79
+  C:21F7H         LINE#         80
+  C:21F9H         LINE#         82
   -------         ENDPROC       _IRDATADEAL
   -------         PROC          _RXDATADEAL
-  C:23AEH         LINE#         80
-  C:23AEH         LINE#         81
-  C:23AEH         LINE#         83
+  C:23C8H         LINE#         86
+  C:23C8H         LINE#         87
+  C:23C8H         LINE#         89
   -------         ENDPROC       _RXDATADEAL
   -------         PROC          _ENTEREVENTDEAL
-  C:23AFH         LINE#         85
-  C:23AFH         LINE#         86
-  C:23AFH         LINE#         88
+  C:23C9H         LINE#         91
+  C:23C9H         LINE#         92
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  18:13:27  PAGE 39
+
+
+  C:23C9H         LINE#         94
   -------         ENDPROC       _ENTEREVENTDEAL
   -------         PROC          _EXITEVENTDEAL
-  C:23B0H         LINE#         90
-  C:23B0H         LINE#         91
-  C:23B0H         LINE#         93
+  C:23CAH         LINE#         96
+  C:23CAH         LINE#         97
+  C:23CAH         LINE#         99
   -------         ENDPROC       _EXITEVENTDEAL
   -------         ENDMOD        STATE_TEST
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2015  15:08:33  PAGE 39
-
-
 
   -------         MODULE        ?C?FPMUL
   C:0B9DH         PUBLIC        ?C?FPMUL
@@ -2318,5 +2326,5 @@ SYMBOL TABLE OF MODULE:  YTN-E608-WIFI-6432 (IT)
   C:0E18H         PUBLIC        ?C?ICALL2
   -------         ENDMOD        ?C?ICALL
 
-Program Size: data=27.4 xdata=358 code=9137
+Program Size: data=27.4 xdata=360 code=9163
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

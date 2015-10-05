@@ -71,8 +71,14 @@ static void _motorCtr(void)
     
 }
 
+uint16_t TestPWM;
 static void _irDataDeal(void)
 {
+    TestPWM += 100;
+
+    T1BDRH = (uint8_t)(TestPWM >> 8);   // duty High
+    T1BDRL = (uint8_t)(TestPWM);  	    // duty Low
+
     Buzz_Set(1, 10, 15);
 }
 
