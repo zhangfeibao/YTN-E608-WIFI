@@ -146,6 +146,7 @@
     <ClInclude Include="src\protocol\fifo.h" />
     <ClInclude Include="src\protocol\protocol.h" />
     <ClInclude Include="src\protocol\uart.h" />
+    <ClInclude Include="src\system.h" />
     <ClInclude Include="src\typedef.h" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClCompile Include="src\protocol\fifo.c" />
     <ClCompile Include="src\protocol\protocol.c" />
     <ClCompile Include="src\protocol\uart.c" />
+    <ClCompile Include="src\system.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,6 +9,7 @@
 ".\humidity.obj",
 ".\dust.obj",
 ".\motor.obj",
+".\system.obj",
 ".\fifo.obj",
 ".\protocol.obj",
 ".\uart.obj",

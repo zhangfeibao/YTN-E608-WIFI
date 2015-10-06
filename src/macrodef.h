@@ -22,6 +22,9 @@
 #define RBIT6   ~BIT6
 #define RBIT7   ~BIT7
 
+#define H(n)    (uint8_t)(n >> 8)
+#define L(n)    (uint8_t)n
+
 #endif
 
 

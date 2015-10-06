@@ -11,7 +11,12 @@ static void _displayControl(void)
     Display_SetLine();
     A_ICON_SERVICE;
     A_ICON_AION;
-    A_ICON_WIFI;
+
+    if (Sys_PlanformConnSta == CONNECTED && Sys_RouteConnSta == CONNECTED)
+    {
+        A_ICON_WIFI;
+    }
+   
     A_ICON_UV;
     A_ICON_CLEAN;
     A_CIRCLE_MID;
@@ -38,7 +43,7 @@ static void _displayControl(void)
 
     Display_ShowTemperature(Humidity_CurrentT);
     Display_ShowHumidity(Humidity_CurrentH);
-    Display_ShowRT(12, 30, FALSE, FALSE);
+    Display_ShowRT(Sys_ClockTime.hour, Sys_ClockTime.min, FALSE, FALSE);
 
     if (Dust_IsReady)
     {
@@ -49,7 +54,7 @@ static void _displayControl(void)
     {
         //Display_DustData(0);
     }
-    Display_DustData(IR_Code);
+    Display_DustData(Sys_WifiStrength);
     
     
     A_LABEL_PM25;

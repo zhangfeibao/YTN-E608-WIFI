@@ -5,6 +5,8 @@
 #include "macrodef.h"
 #include "typedef.h"
 
+#include "system.h"
+
 #include "it.h"
 
 #include "bsp/bsp_init.h"
