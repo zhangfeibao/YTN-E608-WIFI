@@ -41,71 +41,71 @@ static void CMD_DUMMY_DEAL(void)
 {
     uint8_t sum;
 
-    sum += Enqueue(Tx_Queue,0x01);
-    sum += Enqueue(Tx_Queue,0x02);
+    sum += Enqueue(Tx_Queue, 0x01);
+    sum += Enqueue(Tx_Queue, 0x02);
 
     Uart_SendStartup();
 }
 
 static void CMD_GET_SYS_STA_DEAL(void)
 {
-
+    
 }
 static void CMD_POWER_CTR_DEAL(void)
 {
-
+    
 }
 static void CMD_FAN_CTR_DEAL(void)
 {
-
+    
 }
 static void CMD_FIX_CTR_DEAL(void)
 {
-
+    
 }
 static void CMD_CLEAN_CTR_DEAL(void)
 {
-
+    
 }
 static void CMD_AION_CTR_DEAL(void)
 {
-
+    
 }
 static void CMD_UV_CTR_DEAL(void)
 {
-
+    
 }
 static void CMD_TIMER_CTR_DEAL(void)
 {
-
+    
 }
 static void CMD_GET_PM_DATAS_DEAL(void)
 {
-
+    
 }
 static void CMD_GET_ENE_DATAS_DEAL(void)
 {
-
+    
 }
 static void CMD_RT_SET_DEAL(void)
 {
-
+    
 }
 static void CMD_MEM_SET_DEAL(void)
 {
-
+    
 }
 static void CMD_REST_DEAL(void)
 {
-
+   
 }
 static void CMD_GET_DEVICE_INFO_DEAL(void)
 {
-
+    
 }
 static void CMD_WIFI_STA_CHANGE_DEAL(void)
 {
-
+   
 }
 
 struct _protocolTab

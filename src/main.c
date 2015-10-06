@@ -64,7 +64,7 @@ void main(void)
                 Dust_DataUpdate();
                 break;
             case 4:
-
+                Motor_Ctr();
                 break;
             case 5:
             default:

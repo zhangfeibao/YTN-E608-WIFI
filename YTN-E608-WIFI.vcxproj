@@ -136,6 +136,7 @@
     <ClInclude Include="src\bsp\humidity.h" />
     <ClInclude Include="src\bsp\ir.h" />
     <ClInclude Include="src\bsp\key.h" />
+    <ClInclude Include="src\bsp\motor.h" />
     <ClInclude Include="src\fsm\fsm.h" />
     <ClInclude Include="src\fsm\test\state_test.h" />
     <ClInclude Include="src\heads.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="src\bsp\humidity.c" />
     <ClCompile Include="src\bsp\ir.c" />
     <ClCompile Include="src\bsp\key.c" />
+    <ClCompile Include="src\bsp\motor.c" />
     <ClCompile Include="src\fsm\fsm.c" />
     <ClCompile Include="src\fsm\test\state_test.c" />
     <ClCompile Include="src\it.c" />

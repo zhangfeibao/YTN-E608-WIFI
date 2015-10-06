@@ -52,7 +52,8 @@ static void Timer0_init(void)
     // initialize Timer0
     // 8bit timer, use external input EC0
     T0CR = 0x8E;    	// timer setting
-    T0DR = 0x00;    	// period count
+    T0DR = 0xff;    	// period count
+    IE2 |= 0x02;    	// Enable Timer0 interrupt
     T0CR |= 0x01;   	// clear counter
 }
 
@@ -82,8 +83,8 @@ static void UART_init(void)
     USI1CR2 |= 0xEC;	// interrupt, speed
     USI1CR3 = 0x00; 	// stop bit
     USI1BD = 0x67;  	// baud rate
-    //IE |= 0x08;     	// enable UART1 interrupt
-    //IE |= 0x10; 
+    IE |= 0x08;     	// enable UART1 interrupt
+    IE |= 0x10; 
 }
 
 static void WDT_clear(void)

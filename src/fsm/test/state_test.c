@@ -42,13 +42,14 @@ static void _displayControl(void)
 
     if (Dust_IsReady)
     {
-        Display_DustData(Dust_Data);
-        Display_DustLevel(Dust_Level);
+        //Display_DustData(Dust_Data);
+        //Display_DustLevel(Dust_Level);
     }
     else
     {
-        Display_DustData(0);
+        //Display_DustData(0);
     }
+    Display_DustData(IR_Code);
     
     
     A_LABEL_PM25;
@@ -66,18 +67,19 @@ static void _timeTick(void)
 
 }
 
+
 static void _motorCtr(void)
 {
     
 }
 
-uint16_t TestPWM;
+
 static void _irDataDeal(void)
 {
-    TestPWM += 100;
+    Enqueue(Tx_Queue, (uint8_t)(IR_Code >> 8));
+    Enqueue(Tx_Queue, (uint8_t)(IR_Code));
 
-    T1BDRH = (uint8_t)(TestPWM >> 8);   // duty High
-    T1BDRL = (uint8_t)(TestPWM);  	    // duty Low
+    Uart_SendStartup();
 
     Buzz_Set(1, 10, 15);
 }

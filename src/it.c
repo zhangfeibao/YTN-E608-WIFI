@@ -40,13 +40,39 @@ void INT_USI1_Tx() interrupt 4
     }
 }
 
+static uint8_t pgCntH;
+void INT_Timer0() interrupt 13
+{
+    // Timer0 interrupt
+    pgCntH++;
+}
+
+extern volatile bool_t Motor_SpeedUpdated;
 void INT_WT() interrupt 20
 {
     // Watch timer interrupt
     static uint8_t rt_05sCnt;
 
+    /* 电机速度抓取 */
+    Motor_CurSpeed = (pgCntH << 8) + T0CNT;
+    T0CR |= 0x01;
+    pgCntH = 0;
+
+    if (Motor_CurSpeed == 0)
+    {
+        Motor_IsRunning = FALSE;
+    }
+    else if(Motor_CurSpeed > 10)
+    {
+        Motor_IsRunning = TRUE;
+    }
+
+    Motor_SpeedUpdated = TRUE;
+
+    /* 反转闪烁标志 */
     Display_FlashOn = !Display_FlashOn;
 
+    /* 1s标志 */
     rt_05sCnt++;
     if (rt_05sCnt >= 2)
     {
@@ -55,6 +81,7 @@ void INT_WT() interrupt 20
         RT_1sCnt++;
     }
 
+    /* 掉电处理 */
     WDTCR |= 0x20;
 
     if (P1 & BIT1)
