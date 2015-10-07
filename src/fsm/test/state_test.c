@@ -3,7 +3,7 @@
 
 static void _keyActionDeal(void)
 {
-    
+    Buzz_Set(1, 10, 15);
 }
 
 static void _displayControl(void)
@@ -59,6 +59,8 @@ static void _displayControl(void)
     
     A_LABEL_PM25;
     A_LABEL_COL;
+
+    Display_LedsEn.leds = 0xff;
 }
 
 static void _taskExe(void)
@@ -81,12 +83,12 @@ static void _motorCtr(void)
 
 static void _irDataDeal(void)
 {
-    Enqueue(Tx_Queue, (uint8_t)(IR_Code >> 8));
-    Enqueue(Tx_Queue, (uint8_t)(IR_Code));
-
-    Uart_SendStartup();
-
-    Buzz_Set(1, 10, 15);
+//     Enqueue(Tx_Queue, (uint8_t)(IR_Code >> 8));
+//     Enqueue(Tx_Queue, (uint8_t)(IR_Code));
+// 
+//     Uart_SendStartup();
+// 
+//     Buzz_Set(1, 10, 15);
 }
 
 

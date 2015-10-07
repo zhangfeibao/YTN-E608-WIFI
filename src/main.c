@@ -21,6 +21,8 @@ void main(void)
 
     Buzz_Set(1, 10, 15);
 
+    sei();          	// enable INT.
+
     while (TRUE)
     {
         WDTCR |= 0x20;
@@ -47,6 +49,8 @@ void main(void)
                 currentState->irData_handler();
             }
 
+            Display_LedDrive(TRUE);
+
             taskIndex++;
             taskIndexExt++;
 
@@ -55,7 +59,8 @@ void main(void)
             switch (taskIndex)
             {
             case 1:
-
+                Key_ActionDetect();
+                Display_LedDrive(FALSE);
             	break;
             case 2:
                 Buzz_Ctr();

@@ -5,47 +5,48 @@ KeyAction_t Key_Action;
 
 bool_t Key_Released;
 
-#define PORT_FOR_KEY_SCAN()   //{P1CONH &= (~0XFC);P4CONH &= (~0X3F);}
+#define PORT_FOR_KEY_SCAN()   {P3IO &= (RBIT7 & RBIT6 & RBIT5 & RBIT0);P2IO &= (RBIT6 & RBIT7);}
 static uint8_t Key_Read(void)
 {
     uint8_t keyDat;
 
     /* ¹Ø±ÕLED */
-    P4 |= (BIT0 | BIT1 | BIT3);
-    P2 |= BIT7;
+    P3 |= (BIT1 | BIT2 | BIT3 | BIT4);
 
-    NOP(); NOP(); NOP(); NOP();
+    NOP; NOP; NOP; NOP;
+    P3 |= (BIT7 | BIT6 | BIT5 | BIT0); 
+    P2 |= (BIT6 | BIT7);
     PORT_FOR_KEY_SCAN();
-    NOP(); NOP(); NOP(); NOP();
+    NOP; NOP; NOP; NOP;
 
     keyDat = KEY_NULL;
 
-    if ((P1 & BIT7) == 0)
+    if ((P3 & BIT5) == 0)
     {
         keyDat |= BIT0;
     }
 
-    if ((P1 & BIT6) == 0)
+    if ((P3 & BIT6) == 0)
     {
         keyDat |= BIT1;
     }
 
-    if ((P1 & BIT5) == 0)
+    if ((P3 & BIT7) == 0)
     {
         keyDat |= BIT2;
     }
 
-    if ((P4 & BIT4) == 0)
+    if ((P3 & BIT0) == 0)
     {
         keyDat |= BIT3;
     }
 
-    if ((P4 & BIT5) == 0)
+    if ((P2 & BIT7) == 0)
     {
         keyDat |= BIT4;
     }
 
-    if ((P4 & BIT6) == 0)
+    if ((P2 & BIT6) == 0)
     {
         keyDat |= BIT5;
     }

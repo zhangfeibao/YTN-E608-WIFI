@@ -12,6 +12,7 @@
 #include "bsp/bsp_init.h"
 #include "bsp/aip1944.h"
 #include "bsp/display.h"
+#include "bsp/key.h"
 #include "bsp/buzzer.h"
 #include "bsp/ir.h"
 #include "bsp/humidity.h"

@@ -2,7 +2,7 @@
 #define __DISPLAY_H__
 
 
-#define PORT_FOR_LED_DRIVE()    //{P1CONH |= 0X54;P4CONH |= 0X15;}
+#define PORT_FOR_LED_DRIVE()    {P3IO |= (BIT7 | BIT6 | BIT5 | BIT0);P2IO |= (BIT6 | BIT7);}
 
 typedef union
 {
@@ -112,7 +112,7 @@ void Display_ShowRT(uint8_t h,uint8_t m,bool_t hFlashEn,bool_t mFlashEn);
 
 void Display_ShowNumInRTCArea(uint16_t num);
 
-//void Display_LedDrive(bool_t);
+void Display_LedDrive(bool_t);
 
 void Display_Ctr(void);
 

@@ -213,5 +213,5 @@ void BSP_Init(void)
     UART_init();    	// initialize UART interface
     WDT_init();     	// initialize Watch-dog timer
     WT_init();      	// initialize Watch timer
-    sei();          	// enable INT.
+    //sei();          	// enable INT.
 }

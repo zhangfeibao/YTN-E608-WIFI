@@ -122,12 +122,7 @@ static void Protocol_StaResp(uint8_t cmd)
 
 static void CMD_DUMMY_DEAL(void)
 {
-    uint8_t sum;
-
-    sum += Enqueue(Tx_Queue, 0x01);
-    sum += Enqueue(Tx_Queue, 0x02);
-
-    Uart_SendStartup();
+   
 }
 
 static void CMD_GET_SYS_STA_DEAL(void)
@@ -145,7 +140,7 @@ static void CMD_POWER_CTR_DEAL(void)
     {
         //State_TransitionTo(&State_Standby, TRUE, FALSE);
     }
-
+    Buzz_Set(1, 10, 15);
     Protocol_StaResp(CMD_POWER_CTR);
 }
 static void CMD_FAN_CTR_DEAL(void)
@@ -174,6 +169,8 @@ static void CMD_FAN_CTR_DEAL(void)
             Sys_UVLedSta = UV_LED_ON;
             Sys_AionSta = AION_ON;
         }
+
+        Buzz_Set(1, 10, 15);
     }
 
     Protocol_StaResp(CMD_FAN_CTR);
@@ -181,13 +178,13 @@ static void CMD_FAN_CTR_DEAL(void)
 static void CMD_FIX_CTR_DEAL(void)
 {
     Sys_FixMode = (FixMode_t)Rx_Buf[2];
-
+    Buzz_Set(1, 10, 15);
     Protocol_StaResp(CMD_FIX_CTR);
 }
 static void CMD_CLEAN_CTR_DEAL(void)
 {
     Sys_CleanMode = (CleanMode_t)Rx_Buf[2];
-
+    Buzz_Set(1, 10, 15);
     Protocol_StaResp(CMD_CLEAN_CTR);
 }
 static void CMD_AION_CTR_DEAL(void)
@@ -195,6 +192,7 @@ static void CMD_AION_CTR_DEAL(void)
     if (Sys_PowerSta == POWER_ON)
     {
         Sys_AionSta = (AionSta_t)Rx_Buf[2];
+        Buzz_Set(1, 10, 15);
     }
 
     Protocol_StaResp(CMD_AION_CTR);
@@ -204,6 +202,7 @@ static void CMD_UV_CTR_DEAL(void)
     if (Sys_PowerSta == POWER_ON)
     {
         Sys_UVLedSta = (UVLedSta_t)Rx_Buf[2];
+        Buzz_Set(1, 10, 15);
     }
 
     Protocol_StaResp(CMD_UV_CTR);
@@ -230,6 +229,7 @@ static void CMD_TIMER_CTR_DEAL(void)
 
     Sys_UpdateTimerOnIndex();
 
+    Buzz_Set(1, 10, 15);
     Protocol_StaResp(CMD_TIMER_CTR);
 }
 static void CMD_GET_PM_DATAS_DEAL(void)
@@ -266,6 +266,8 @@ static void CMD_GET_PM_DATAS_DEAL(void)
     Enqueue(Tx_Queue, sum);
     Enqueue(Tx_Queue, 0x7e);
 
+    Buzz_Set(1, 10, 15);
+
     Uart_SendStartup();
 }
 static void CMD_GET_ENE_DATAS_DEAL(void)
@@ -287,6 +289,8 @@ static void CMD_GET_ENE_DATAS_DEAL(void)
     Enqueue(Tx_Queue, sum);
     Enqueue(Tx_Queue, 0x7e);
 
+    Buzz_Set(1, 10, 15);
+
     Uart_SendStartup();
 }
 static void CMD_RT_SET_DEAL(void)
@@ -298,17 +302,23 @@ static void CMD_RT_SET_DEAL(void)
     Sys_ClockTime.hour = Rx_Buf[6];
     Sys_ClockTime.min = Rx_Buf[7];
 
+    Buzz_Set(1, 10, 15);
+
     Protocol_StaResp(CMD_RT_SET);
 }
 static void CMD_MEM_SET_DEAL(void)
 {
     /* 执行一键记忆功能 */
 
+    Buzz_Set(1, 10, 15);
+
     Protocol_StaResp(CMD_MEM_SET);
 }
 static void CMD_REST_DEAL(void)
 {
     /* 执行恢复设备状态功能 */
+
+    Buzz_Set(1, 10, 15);
 
     Protocol_StaResp(CMD_REST);
 }
@@ -450,6 +460,7 @@ void Protocol_Task(void)
 	static uint8_t len;
 	static uint8_t cmd;
 
+    cmdDeal = CMD_DUMMY_DEAL;
 	//while (!QueueIsEmpty(Rx_Queue))
 	while((Rx_Queue->head) != (Rx_Queue->tail))
 	{
@@ -528,7 +539,6 @@ void Protocol_Task(void)
                 {
                     /* checksum is ok */
                     cmdDeal();
-                    Buzz_Set(1, 15, 20);
                 }
 
                 isWaitingHeader = TRUE;

@@ -10,6 +10,7 @@
 ".\dust.obj",
 ".\motor.obj",
 ".\system.obj",
+".\key.obj",
 ".\fifo.obj",
 ".\protocol.obj",
 ".\uart.obj",

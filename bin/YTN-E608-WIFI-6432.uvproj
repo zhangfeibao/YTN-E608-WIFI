@@ -428,6 +428,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\system.c</FilePath>
             </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\bsp\key.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

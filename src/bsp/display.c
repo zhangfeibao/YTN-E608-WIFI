@@ -939,30 +939,23 @@ void Display_ShowNumInRTCArea(uint16_t num)
 }
 
 
+#define LED_COM0_ON()       {P3 |= BIT5;P3 |= BIT0;}
+#define LED_COM1_ON()       {P3 |= BIT6;P2 |= BIT7;}
+#define LED_COM2_ON()       {P3 |= BIT7;P2 |= BIT6;}
 
+#define LED_ALL_COM_OFF()   {P3 &= (RBIT0 & RBIT5 & RBIT6 & RBIT7);P2 &= (RBIT6 & RBIT7);}
 
+#define P1_LED1_0()         P3 &= (~BIT3)
+#define P1_LED1_1()         P3 |= BIT3
 
+#define P1_LED2_0()         P3 &= (~BIT4)
+#define P1_LED2_1()         P3 |= BIT4
 
+#define P2_LED1_0()         P3 &= (~BIT2)
+#define P2_LED1_1()         P3 |= BIT2
 
-#if 0
-
-#define LED_COM0_ON()       {P1 |= BIT7;P4 |= BIT4;}
-#define LED_COM1_ON()       {P1 |= BIT6;P4 |= BIT5;}
-#define LED_COM2_ON()       {P1 |= BIT5;P4 |= BIT6;}
-
-#define LED_ALL_COM_OFF()   {P1 &= (~0xe0);P4 &= (~0x70);}
-
-#define P1_LED1_0()         P4 &= (~BIT1)
-#define P1_LED1_1()         P4 |= BIT1
-
-#define P1_LED2_0()         P4 &= (~BIT0)
-#define P1_LED2_1()         P4 |= BIT0
-
-#define P2_LED1_0()         P2 &= (~BIT7)
-#define P2_LED1_1()         P2 |= BIT7
-
-#define P2_LED2_0()         P4 &= (~BIT3)
-#define P2_LED2_1()         P4 |= BIT3
+#define P2_LED2_0()         P3 &= (~BIT1)
+#define P2_LED2_1()         P3 |= BIT1
 
 
 void Display_LedDrive(bool_t comChangeEn)
@@ -979,7 +972,7 @@ void Display_LedDrive(bool_t comChangeEn)
     switch(scanCnt)
     {
     case 1:
-        if(Display_LedsEn.uvEn)
+        if(Display_LedsEn.led.uvEn)
         {
             P1_LED2_0();
         }
@@ -987,7 +980,7 @@ void Display_LedDrive(bool_t comChangeEn)
         {
             P1_LED2_1();
         }
-        if(Display_LedsEn.aionEn)
+        if(Display_LedsEn.led.aionEn)
         {
             P2_LED2_0();
         }
@@ -999,7 +992,7 @@ void Display_LedDrive(bool_t comChangeEn)
         LED_COM0_ON();
         break;
     case 2:
-        if(Display_LedsEn.preEn)
+        if(Display_LedsEn.led.preEn)
         {
             P1_LED2_0();
         }
@@ -1007,7 +1000,7 @@ void Display_LedDrive(bool_t comChangeEn)
         {
             P1_LED2_1();
         }
-        if(Display_LedsEn.spEn)
+        if(Display_LedsEn.led.spEn)
         {
             P2_LED2_0();
         }
@@ -1019,7 +1012,7 @@ void Display_LedDrive(bool_t comChangeEn)
         break;
     case 3:
     default:
-        if(Display_LedsEn.powerBlueEn)
+        if(Display_LedsEn.led.powerBlueEn)
         {
             P2_LED2_0();
         }
@@ -1028,7 +1021,7 @@ void Display_LedDrive(bool_t comChangeEn)
             P2_LED2_1();
         }
 
-        if(Display_LedsEn.powerOrangeEn)
+        if(Display_LedsEn.led.powerOrangeEn)
         {
             P2_LED1_0();
         }
@@ -1037,7 +1030,7 @@ void Display_LedDrive(bool_t comChangeEn)
             P2_LED1_1();
         }
 
-        if(Display_LedsEn.timeOrangeEn)
+        if(Display_LedsEn.led.timeOrangeEn)
         {
             P1_LED1_0();
         }
@@ -1046,7 +1039,7 @@ void Display_LedDrive(bool_t comChangeEn)
             P1_LED1_1();
         }
 
-        if(Display_LedsEn.timeBlueEn)
+        if(Display_LedsEn.led.timeBlueEn)
         {
             P1_LED2_0();
         }
@@ -1060,7 +1053,7 @@ void Display_LedDrive(bool_t comChangeEn)
         break;
     }
 }
-#endif
+
 
 void Display_Ctr(void)
 {
