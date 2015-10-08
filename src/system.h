@@ -65,6 +65,19 @@ typedef enum
 
 typedef union
 {
+    uint8_t loads;
+    struct
+    {
+        uint8_t uv : 1;
+        uint8_t aion : 1;
+        uint8_t hv : 1;
+        uint8_t dustPower : 1;
+        uint8_t resaves : 4;
+    }load;
+}LoadCtr_t;
+
+typedef union
+{
     uint8_t bytes[2];
     struct
     {
@@ -135,6 +148,9 @@ extern TimeSet_t Sys_PowerOffPoint2;
 extern TimeSet_t Sys_PowerOnPoint3;
 extern TimeSet_t Sys_PowerOffPoint3;
 
+extern code TimeSet_t* Timer_Points[6];
+extern code SimpleTime_t Sys_TimerSegments[3][2];
+
 extern DustRecord_t Sys_Pm25Records_10;
 extern DustRecord_t Sys_Pm25Records_30;
 
@@ -143,9 +159,26 @@ extern UsedTimeRecord_t Sys_UsedTimeRecord;
 extern bool_t Sys_TimerFunEn;
 extern RemoteTimerCtr_t Sys_RemoteTimerCtr;
 extern int8_t Sys_TimerOnIndex;
+extern int8_t Sys_TimerStartedIndex;
+
+extern bool_t Sys_NHVModeEn;
+
+extern uint8_t Sys_LightLowerCountdown;
+
+extern volatile uint8_t Time_Flag1s;
+extern volatile bool_t Time_Flag1Min;
+extern uint8_t Time_RTCSec;
+extern uint8_t Time_100msCnt;   /* 不精确100ms定时 */
+
+extern uint32_t Sys_EWorkedMin;
+extern bool_t Sys_EDispEn;
+
+extern bool_t Sys_MemoryDataExist;
+
+extern LoadCtr_t Sys_LoadsEn;
 
 void Sys_UpdateTimerOnIndex(void);
-
+void Sys_LoadCtr(void);
 
 #endif
 

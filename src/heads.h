@@ -27,6 +27,15 @@
 
 #include "fsm/fsm.h"
 #include "fsm/test/state_test.h"
+#include "fsm/startup/state_startup.h"
+#include "fsm/standby/state_standby.h"
+#include "fsm/clock_setting/state_clockSetting.h"
+#include "fsm/echeck/state_echeck.h"
+#include "fsm/timer_setting/state_timerSetting.h"
+#include "fsm/timer_fn_setting/state_timerFnSetting.h"
+#include "fsm/timer_lookup/state_timerLookup.h"
+#include "fsm/work/state_work.h"
+
 
 #endif
 

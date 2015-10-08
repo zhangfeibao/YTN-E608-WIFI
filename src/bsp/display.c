@@ -37,21 +37,30 @@ void Display_SetLine(void)
 void Display_CircleRun(DispCircleSp_t sp)
 {
     static uint8_t cnt;
-    static uint8_t disIndex;
+    static bool_t disIndex;
     cnt ++;
     if (cnt >= sp)
     {
         cnt = 0;
 
-        disIndex ++;
-        if (disIndex > 8)
-        {
-            disIndex = 0;
-        }
+        disIndex = !disIndex;
     }
 
     A_CIRCLE_MID;
 
+    if (disIndex)
+    {
+        A_CIRCLE_VANE1;
+        A_CIRCLE_VANE3;
+        A_CIRCLE_VANE5;
+    }
+    else
+    {
+        A_CIRCLE_VANE2;
+        A_CIRCLE_VANE4;
+        A_CIRCLE_VANE6;
+    }
+/*
     switch(disIndex)
     {
     case 6:
@@ -75,6 +84,7 @@ void Display_CircleRun(DispCircleSp_t sp)
         disIndex = 0;
         break;
     }
+    */
 }
 
 void Display_DustLevel(uint8_t level)
@@ -98,14 +108,11 @@ void Display_DustLevel(uint8_t level)
         break;
     }
 }
-#if 0
+
 void Display_SpLevel(SpOptions_t level)
 {
     switch (level)
     {
-    case SP_AUTO:
-        Display_Datas[0x10] |= BIT0;
-        break;
     case SP_HIGH:
         Display_Datas[0x24] |= BIT2;
     case SP_MID:
@@ -121,8 +128,6 @@ void Display_SpLevel(SpOptions_t level)
         break;
     }
 }
-
-#endif
 
 
 #define T_COM10 Display_Datas[0x2d]     /* SEG_a - SEG_e */
@@ -552,10 +557,6 @@ void Display_DustData(uint16_t pm)
     uint8_t v10;
     uint8_t v1;
 
-    //bool_t com1000En;
-    //bool_t com100En;
-    //bool_t com10En;
-
     if (pm > 9999)
     {
         pm = 9999;
@@ -566,50 +567,17 @@ void Display_DustData(uint16_t pm)
     v10 = (pm / 10) % 10;
     v1 = pm % 10;
 
-    //com1000En = FALSE;
-    //com100En = FALSE;
-    //com10En = FALSE;
+    
+    PM_COM1000 |= PM_COM1000_nums[v1000];
+    PM_COM1000_E |= PM_COM1000_E_nums[v1000];
+    
+    PM_COM100 |= PM_COM100_nums[v100];
+    PM_COM100_E1 |= PM_COM100_E1_nums[v100];
+    PM_COM100_E2 |= PM_COM100_E2_nums[v100];
+    
+    PM_COM10 |= PM_COM10_nums[v10];
+    PM_COM10_E |= PM_COM10_E_nums[v10];
 
-//     if (v1000 != 0)
-//     {
-//         com1000En = TRUE;
-//         com100En = TRUE;
-//         com10En = TRUE;
-//     }
-//     else
-//     {
-//         if (v100 != 0)
-//         {
-//             com100En = TRUE;
-//             com10En = TRUE;
-//         }
-//         else
-//         {
-//             if (v10 != 0)
-//             {
-//                 com10En = TRUE;
-//             }
-//         }
-//     }
-
-    //if (com1000En)
-    {
-        PM_COM1000 |= PM_COM1000_nums[v1000];
-        PM_COM1000_E |= PM_COM1000_E_nums[v1000];
-    }
-
-    //if (com100En)
-    {
-        PM_COM100 |= PM_COM100_nums[v100];
-        PM_COM100_E1 |= PM_COM100_E1_nums[v100];
-        PM_COM100_E2 |= PM_COM100_E2_nums[v100];
-    }
-
-    //if (com10En)
-    {
-        PM_COM10 |= PM_COM10_nums[v10];
-        PM_COM10_E |= PM_COM10_E_nums[v10];
-    }
 
     PM_COM1 |= PM_COM1_nums[v1];
     PM_COM1_E1 |= PM_COM1_E1_nums[v1];
@@ -842,11 +810,9 @@ void Display_ShowRT(uint8_t h,uint8_t m,bool_t hFlashEn,bool_t mFlashEn)
     }
     if ((!hFlashEn) || Display_FlashOn)
     {
-        //if (h10 != 0)
-        {
-            RT_COM_H10 |= RT_COM_H10_nums[h10];
-            RT_COM_H10_E |= RT_COM_H10_E_nums[h10];
-        }
+        RT_COM_H10 |= RT_COM_H10_nums[h10];
+        RT_COM_H10_E |= RT_COM_H10_E_nums[h10];
+
         RT_COM_H1 |= RT_COM_H1_nums[h1];
         RT_COM_H1_E |= RT_COM_H1_E_nums[h1];
     }
@@ -871,10 +837,6 @@ void Display_ShowNumInRTCArea(uint16_t num)
     uint8_t v10;
     uint8_t v1;
 
-//     bool_t com1000En;
-//     bool_t com100En;
-//     bool_t com10En;
-
     v1000 = num / 1000;
     v100 = (num / 100) % 10;
     v10 = (num / 10) % 10;
@@ -889,50 +851,16 @@ void Display_ShowNumInRTCArea(uint16_t num)
         v1 = 10;
     }
 
-    //com1000En = FALSE;
-    //com100En = FALSE;
-    //com10En = FALSE;
+    
+    RT_COM_H10 |= RT_COM_H10_nums[v1000];
+    RT_COM_H10_E |= RT_COM_H10_E_nums[v1000];
 
-//     if (v1000 != 0)
-//     {
-//         com1000En = TRUE;
-//         com100En = TRUE;
-//         com10En = TRUE;
-//     }
-//     else
-//     {
-//         if (v100 != 0)
-//         {
-//             com100En = TRUE;
-//             com10En = TRUE;
-//         }
-//         else
-//         {
-//             if (v10 != 0)
-//             {
-//                 com10En = TRUE;
-//             }
-//         }
-//     }
+    RT_COM_H1 |= RT_COM_H1_nums[v100];
+    RT_COM_H1_E |= RT_COM_H1_E_nums[v100];
 
-    //if (com1000En)
-    {
-        RT_COM_H10 |= RT_COM_H10_nums[v1000];
-        RT_COM_H10_E |= RT_COM_H10_E_nums[v1000];
-    }
-
-    //if (com100En)
-    {
-        RT_COM_H1 |= RT_COM_H1_nums[v100];
-        RT_COM_H1_E |= RT_COM_H1_E_nums[v100];
-    }
-
-    //if (com10En)
-    {
-        RT_COM_M10 |= RT_COM_M10_nums[v10];
-        RT_COM_M10_E1 |= RT_COM_M10_E1_nums[v10];
-        RT_COM_M10_E2 |= RT_COM_M10_E2_nums[v10];
-    }
+    RT_COM_M10 |= RT_COM_M10_nums[v10];
+    RT_COM_M10_E1 |= RT_COM_M10_E1_nums[v10];
+    RT_COM_M10_E2 |= RT_COM_M10_E2_nums[v10];
 
     RT_COM_M1 |= RT_COM_M1_nums[v1];
     RT_COM_M1_E |= RT_COM_M1_E_nums[v1];

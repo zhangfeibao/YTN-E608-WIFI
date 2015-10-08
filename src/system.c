@@ -35,6 +35,26 @@ UsedTimeRecord_t Sys_UsedTimeRecord;
 bool_t Sys_TimerFunEn;
 RemoteTimerCtr_t Sys_RemoteTimerCtr;
 int8_t Sys_TimerOnIndex;
+int8_t Sys_TimerStartedIndex;
+
+bool_t Sys_NHVModeEn;
+
+uint8_t Sys_LightLowerCountdown;
+
+
+volatile uint8_t Time_Flag1s;
+volatile bool_t Time_Flag1Min;
+uint8_t Time_RTCSec;
+uint8_t Time_100msCnt;
+
+uint32_t Sys_EWorkedMin;
+bool_t Sys_EDispEn;
+
+bool_t Sys_MemoryDataExist;
+
+
+LoadCtr_t Sys_LoadsEn;
+
 
 code TimeSet_t* Timer_Points[6] =
 {
@@ -78,5 +98,53 @@ void Sys_UpdateTimerOnIndex(void)
         }
     }
 }
+
+
+void Sys_LoadCtr(void)
+{
+    Sys_LoadsEn.loads = 0;
+    currentState->taskExe_handler();
+
+    if (Sys_LoadsEn.load.uv)
+    {
+        P14 = 1;
+    }
+    else
+    {
+        P14 = 0;
+    }
+
+    if (Sys_LoadsEn.load.aion)
+    {
+        P16 = 1;
+    }
+    else
+    {
+        P16 = 0;
+    }
+
+    if (Sys_LoadsEn.load.hv)
+    {
+        P15 = 1;
+    }
+    else
+    {
+        P15 = 0;
+    }
+
+    if (Sys_LoadsEn.load.dustPower)
+    {
+        P43 = 1;
+    }
+    else
+    {
+        P43 = 0;
+    }
+}
+
+
+
+
+
 
 

@@ -134,11 +134,11 @@ static void CMD_POWER_CTR_DEAL(void)
     Sys_PowerSta = (PowerSta_t)Rx_Buf[2];
     if (Sys_PowerSta == POWER_ON)
     {
-        //State_TransitionTo(&State_Work, TRUE, FALSE);
+        State_TransitionTo(&State_Work, TRUE, FALSE);
     }
     else
     {
-        //State_TransitionTo(&State_Standby, TRUE, FALSE);
+        State_TransitionTo(&State_Standby, TRUE, FALSE);
     }
     Buzz_Set(1, 10, 15);
     Protocol_StaResp(CMD_POWER_CTR);
@@ -310,8 +310,10 @@ static void CMD_MEM_SET_DEAL(void)
 {
     /* 执行一键记忆功能 */
 
-    Buzz_Set(1, 10, 15);
+    Sys_MemoryDataExist = TRUE;
+    State_TransitionTo(&State_Standby, TRUE, FALSE);
 
+    Buzz_Set(1, 10, 15);
     Protocol_StaResp(CMD_MEM_SET);
 }
 static void CMD_REST_DEAL(void)

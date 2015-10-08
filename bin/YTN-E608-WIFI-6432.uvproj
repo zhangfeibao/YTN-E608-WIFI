@@ -335,7 +335,7 @@
             <DataOverlaying>1</DataOverlaying>
             <OverlayString></OverlayString>
             <MiscControls></MiscControls>
-            <DisableWarningNumbers>16</DisableWarningNumbers>
+            <DisableWarningNumbers>16,15,13</DisableWarningNumbers>
             <LinkerCmdFile></LinkerCmdFile>
             <Assign></Assign>
             <ReserveString></ReserveString>
@@ -467,6 +467,46 @@
               <FileName>state_test.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\fsm\test\state_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_startup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\startup\state_startup.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_standby.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\standby\state_standby.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_clockSetting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\clock_setting\state_clockSetting.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_echeck.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\echeck\state_echeck.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_timerSetting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\timer_setting\state_timerSetting.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_timerFnSetting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\timer_fn_setting\state_timerFnSetting.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_timerLookup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\timer_lookup\state_timerLookup.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\fsm\work\state_work.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,7 +1,6 @@
 #include "heads.h"
 
 volatile fastBool_t SysTick_4ms;
-volatile uint8_t RT_1sCnt;
 
 volatile uint8_t idata SquGen_Cnt;
 
@@ -52,6 +51,7 @@ void INT_WT() interrupt 20
 {
     // Watch timer interrupt
     static uint8_t rt_05sCnt;
+    static uint8_t clearMemoryDataCnt;
 
     /* 电机速度抓取 */
     Motor_CurSpeed = (pgCntH << 8) + T0CNT;
@@ -78,7 +78,27 @@ void INT_WT() interrupt 20
     {
         rt_05sCnt = 0;
 
-        RT_1sCnt++;
+        Time_Flag1s++;
+
+        Time_RTCSec++;
+        if (Time_RTCSec >= 60)
+        {
+            Time_RTCSec = 0;
+
+            Time_Flag1Min = TRUE;
+
+            Sys_ClockTime.min++;
+            if (Sys_ClockTime.min >= 60)
+            {
+                Sys_ClockTime.min = 0;
+
+                Sys_ClockTime.hour++;
+                if (Sys_ClockTime.hour >= 24)
+                {
+                    Sys_ClockTime.hour = 0;
+                }
+            }
+        }
     }
 
     /* 掉电处理 */
@@ -94,11 +114,19 @@ void INT_WT() interrupt 20
         IE3 &= (~0x10);
         IE &= (~0x08);
         IE &= (~0x10); 
+
+        clearMemoryDataCnt++;
+        if (clearMemoryDataCnt > 60)
+        {
+            Sys_MemoryDataExist = FALSE;
+        }
     }
     else
     {
         /* 正常供电 */
         IE3 |= 0x10;
+
+        clearMemoryDataCnt = 0;
     }
 }
 
@@ -253,6 +281,7 @@ void INT_BIT() interrupt 22
 
         SysTick_4ms = TRUE;
 
+        Display_LedDrive(TRUE);
 
         if (Rx_Timeout)
         {
@@ -261,6 +290,14 @@ void INT_BIT() interrupt 22
             {
                 Rx_QueueDataExist = 1;
             }
+        }
+    }
+
+    if (Display_IsLowLight)
+    {
+        if (t_128usCnt > 8)
+        {
+            P3 |= (BIT1 | BIT2 | BIT3 | BIT4);
         }
     }
 }

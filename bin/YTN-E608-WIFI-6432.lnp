@@ -15,9 +15,17 @@
 ".\protocol.obj",
 ".\uart.obj",
 ".\fsm.obj",
-".\state_test.obj" 
+".\state_test.obj",
+".\state_startup.obj",
+".\state_standby.obj",
+".\state_clockSetting.obj",
+".\state_echeck.obj",
+".\state_timerSetting.obj",
+".\state_timerFnSetting.obj",
+".\state_timerLookup.obj",
+".\state_work.obj" 
 TO "YTN-E608-WIFI-6432" 
 RAMSIZE(256) 
-DISABLEWARNING (16) 
+DISABLEWARNING (16,15,13) 
 CODE( 0X0000-0X7FFF )
 XDATA( 0X0000-0X02FF )

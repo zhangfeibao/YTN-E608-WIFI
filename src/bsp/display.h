@@ -68,7 +68,8 @@ typedef union
 
 #define A_LABEL_FAN_SP      Display_Datas[0x21] |= BIT4;\
                             Display_Datas[0x24] |= BIT7
-#define A_LABEL_AUTO        Display_Datas[0x24] |= (BIT0 | BIT1)
+#define A_LABEL_AUTO        Display_Datas[0x24] |= (BIT0 | BIT1);\
+                            Display_Datas[0x10] |= BIT0;
 
 
 #define A_LABEL_COL         Display_Datas[0x3C] |= (BIT7 | BIT6)
@@ -103,7 +104,7 @@ void Display_SetAll(LedSta_t sta);
 void Display_SetLine(void);
 void Display_CircleRun(DispCircleSp_t sp);
 void Display_DustLevel(uint8_t level);
-//void Display_SpLevel(SpOptions_t level);
+void Display_SpLevel(SpOptions_t level);
 
 void Display_ShowTemperature(uint8_t t);
 void Display_ShowHumidity(uint8_t h);

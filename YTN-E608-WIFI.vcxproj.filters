@@ -85,6 +85,30 @@
     <ClInclude Include="src\system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\fsm\startup\state_startup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\standby\state_standby.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\clock_setting\state_clockSetting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\echeck\state_echeck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\timer_setting\state_timerSetting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\timer_fn_setting\state_timerFnSetting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\timer_lookup\state_timerLookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\work\state_work.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.c">
@@ -136,6 +160,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\system.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\startup\state_startup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\standby\state_standby.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\clock_setting\state_clockSetting.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\echeck\state_echeck.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\timer_setting\state_timerSetting.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\timer_fn_setting\state_timerFnSetting.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\timer_lookup\state_timerLookup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\work\state_work.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

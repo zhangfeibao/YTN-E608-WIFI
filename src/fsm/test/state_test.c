@@ -45,17 +45,9 @@ static void _displayControl(void)
     Display_ShowHumidity(Humidity_CurrentH);
     Display_ShowRT(Sys_ClockTime.hour, Sys_ClockTime.min, FALSE, FALSE);
 
-    if (Dust_IsReady)
-    {
-        //Display_DustData(Dust_Data);
-        //Display_DustLevel(Dust_Level);
-    }
-    else
-    {
-        //Display_DustData(0);
-    }
     Display_DustData(Sys_WifiStrength);
     
+    Display_SpLevel(SP_MID);
     
     A_LABEL_PM25;
     A_LABEL_COL;
@@ -88,7 +80,9 @@ static void _irDataDeal(void)
 // 
 //     Uart_SendStartup();
 // 
-//     Buzz_Set(1, 10, 15);
+    Buzz_Set(1, 10, 15);
+    Display_IsLowLight = TRUE;
+
 }
 
 

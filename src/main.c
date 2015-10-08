@@ -17,7 +17,7 @@ void main(void)
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL7;
     DUST_POWER = 1;
 
-    State_TransitionTo(&State_Test, TRUE, FALSE);
+    State_TransitionTo(&State_Startup, TRUE, FALSE);
 
     Buzz_Set(1, 10, 15);
 
@@ -49,8 +49,6 @@ void main(void)
                 currentState->irData_handler();
             }
 
-            Display_LedDrive(TRUE);
-
             taskIndex++;
             taskIndexExt++;
 
@@ -72,13 +70,14 @@ void main(void)
                 Motor_Ctr();
                 break;
             case 5:
+                Sys_LoadCtr();
             default:
+
                 taskIndex = 0;
 
                 break;
             }
 
-            taskIndexExt++;
             if (taskIndexExt >= 15)
             {
                 taskIndexExt = 0;
@@ -87,8 +86,19 @@ void main(void)
 
                 Humidity_GetCurrentT();
                 Humidity_GetCurrentH();
-
                 Dust_LevelUpdate();
+
+                currentState->timeTick_handler();
+
+                if (Time_Flag1s)
+                {
+                    Time_Flag1s--;
+                }
+
+                if (Time_Flag1Min)
+                {
+                    Time_Flag1Min = FALSE;
+                }
             }
         }
     }
