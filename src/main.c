@@ -1,12 +1,7 @@
 #include "heads.h"
 
-void main(void)
+void initAll(void)
 {
-    static idata uint8_t taskIndex;
-    static idata uint8_t taskIndexExt;
-
-    static idata uint8_t HSampleT_Cnt;
-
     BSP_Init();
     Buzz_DeviceInit();
     Uart_MemoryInit();
@@ -15,13 +10,23 @@ void main(void)
     Dust_DeviceInit();
 
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL7;
-    DUST_POWER = 1;
 
     State_TransitionTo(&State_Startup, TRUE, FALSE);
+    //State_TransitionTo(&State_Test, TRUE, FALSE);
 
     Buzz_Set(1, 10, 15);
 
     sei();          	// enable INT.
+}
+
+void main(void)
+{
+    static idata uint8_t taskIndex;
+    static idata uint8_t taskIndexExt;
+
+    static idata uint8_t HSampleT_Cnt;
+
+    initAll();
 
     while (TRUE)
     {
@@ -71,8 +76,8 @@ void main(void)
                 break;
             case 5:
                 Sys_LoadCtr();
+                Sys_EnterStopMode();
             default:
-
                 taskIndex = 0;
 
                 break;

@@ -199,11 +199,24 @@ static void port_init(void)
 
 void BSP_Init(void)
 {
-    LVRCR = 0X83;
+    LVRCR = 0X01;
 
     cli();          	// disable INT. during peripheral setting
     port_init();    	// initialize ports
     clock_init();   	// initialize operation clock
+    WT_init();
+    while (1)
+    {
+        if (P1 & BIT1)
+        {
+            sei();
+        }
+        else
+        {
+            break;
+        }
+    }
+    
     ADC_init();     	// initialize A/D convertor
     BIT_init();     	// initialize Basic interval timer
     BUZ_init();     	// initialize Buzzer
@@ -211,7 +224,7 @@ void BSP_Init(void)
     Timer0_init();  	// initialize Timer0
     Timer1_init();  	// initialize Timer1
     UART_init();    	// initialize UART interface
-    WDT_init();     	// initialize Watch-dog timer
-    WT_init();      	// initialize Watch timer
+    //WDT_init();     	// initialize Watch-dog timer
+    //WT_init();      	// initialize Watch timer
     //sei();          	// enable INT.
 }

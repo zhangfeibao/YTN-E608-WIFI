@@ -3,7 +3,7 @@
 
 static void _keyActionDeal(void)
 {
-    Buzz_Set(1, 10, 15);
+    //Buzz_Set(1, 10, 15);
 }
 
 static void _displayControl(void)
@@ -19,13 +19,13 @@ static void _displayControl(void)
    
     A_ICON_UV;
     A_ICON_CLEAN;
-    A_CIRCLE_MID;
-    A_CIRCLE_VANE1;
-    A_CIRCLE_VANE2;
-    A_CIRCLE_VANE3;
-    A_CIRCLE_VANE4;
-    A_CIRCLE_VANE5;
-    A_CIRCLE_VANE6;
+    //A_CIRCLE_MID;
+    //A_CIRCLE_VANE1;
+    //A_CIRCLE_VANE2;
+    //A_CIRCLE_VANE3;
+    //A_CIRCLE_VANE4;
+    //A_CIRCLE_VANE5;
+    //A_CIRCLE_VANE6;
 
     A_LABEL_TIMER_ON;
     A_LABEL_TIMER_OFF;
@@ -48,9 +48,15 @@ static void _displayControl(void)
     Display_DustData(Sys_WifiStrength);
     
     Display_SpLevel(SP_MID);
+
+    Display_CircleRun(CIRCLE_SP_3);
     
     A_LABEL_PM25;
-    A_LABEL_COL;
+
+    if (Display_FlashOn)
+    {
+        A_LABEL_COL;
+    }
 
     Display_LedsEn.leds = 0xff;
 }
@@ -80,9 +86,6 @@ static void _irDataDeal(void)
 // 
 //     Uart_SendStartup();
 // 
-    Buzz_Set(1, 10, 15);
-    Display_IsLowLight = TRUE;
-
 }
 
 

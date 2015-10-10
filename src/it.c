@@ -47,6 +47,7 @@ void INT_Timer0() interrupt 13
 }
 
 extern volatile bool_t Motor_SpeedUpdated;
+void initAll(void);
 void INT_WT() interrupt 20
 {
     // Watch timer interrupt
@@ -115,16 +116,28 @@ void INT_WT() interrupt 20
         IE &= (~0x08);
         IE &= (~0x10); 
 
+        P0 = 0;
+        P1 = 0;
+        P2 = 0;
+        P3 = 0;
+        P4 = 0;
+        P5 = 0;
+
+
+
         clearMemoryDataCnt++;
         if (clearMemoryDataCnt > 60)
         {
+            clearMemoryDataCnt = 60;
             Sys_MemoryDataExist = FALSE;
         }
     }
     else
     {
-        /* 正常供电 */
-        IE3 |= 0x10;
+        if (clearMemoryDataCnt)
+        {
+            initAll();
+        }
 
         clearMemoryDataCnt = 0;
     }

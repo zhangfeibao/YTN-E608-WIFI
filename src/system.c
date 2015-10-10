@@ -142,7 +142,32 @@ void Sys_LoadCtr(void)
     }
 }
 
+void Sys_EnterStopMode(void)
+{
+    static uint8_t cnt;
 
+    /* µç³Ø¹©µç */
+    if (P1 & BIT1)
+    {
+        cnt++;
+        if (cnt > 5)
+        {
+            cnt = 0;
+
+            PCON = 0x03;
+            NOP; NOP; NOP; NOP;
+            NOP; NOP; NOP; NOP;
+
+            IE3 &= (~0x10);
+            IE &= (~0x08);
+            IE &= (~0x10);
+        }
+    }
+    else
+    {
+        cnt = 0;
+    }
+}
 
 
 

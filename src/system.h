@@ -180,5 +180,7 @@ extern LoadCtr_t Sys_LoadsEn;
 void Sys_UpdateTimerOnIndex(void);
 void Sys_LoadCtr(void);
 
+void Sys_EnterStopMode(void);
+
 #endif
 
