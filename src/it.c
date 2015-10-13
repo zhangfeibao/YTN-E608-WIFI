@@ -168,6 +168,7 @@ static idata struct _IRFlag IR_Flags;
 #define P_CO    P23
 #define P_SQU   P22
 
+
 void INT_BIT() interrupt 22
 {
     // BIT interrupt

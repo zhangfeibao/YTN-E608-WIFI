@@ -8,6 +8,24 @@ static uint8_t dustRecord30Index;
 static bool_t IsAutoOffSta;
 static uint16_t AutoOffCnt;
 
+static uint8_t TotalWorkedMin;
+
+struct _runSta
+{
+    uint8_t mouthIndex;
+
+    uint8_t sleepMin;
+    uint8_t quietMin;
+    uint8_t lowMin;
+    uint8_t midMin;
+    uint8_t highMin;
+};
+
+static struct _runSta runStatus = {0xaa};
+
+static uint16_t dustWipeOffBase;
+static uint16_t dustWipeOffCur;
+
 static void _keyActionDeal(void)
 {
     /* 低亮状态，按键只执行高亮显示功能 */
@@ -168,7 +186,6 @@ static void _displayControl(void)
 
     /* 风速显示 */
     A_LABEL_FAN_SP;
-    Display_SpLevel(Sys_SpOption);
 
     if (Sys_IsAutoMode)
     {
@@ -218,6 +235,7 @@ static void _displayControl(void)
     }
     else
     {
+        Display_SpLevel(Sys_SpOption);
         Display_CircleRun((DispCircleSp_t)(5 - Sys_SpOption));
     }
 
@@ -356,6 +374,7 @@ static uint8_t countOfSec;
 static void _timeTick(void)
 {
     int8_t index;
+    uint16_t t;
 
     if (memoryOffCounedown)
     {
@@ -405,6 +424,9 @@ static void _timeTick(void)
 
         /* 工作时间计时 */
         countOfSec++;
+
+        dustWipeOffCur += Dust_Data;
+
         if (countOfSec >= 60)
         {
             countOfSec = 0;
@@ -415,6 +437,33 @@ static void _timeTick(void)
                 Sys_WorkTime.min = 0;
 
                 Sys_WorkTime.hour++;
+            }
+
+            TotalWorkedMin++;
+            if (TotalWorkedMin >= 60)
+            {
+                TotalWorkedMin = 0;
+
+                Sys_TotalWorkedTime++;
+            }
+
+            if (Sys_WorkTime.hour == 0 && Sys_WorkTime.min <= 3)
+            {
+                if (Sys_WorkTime.min <= 3)
+                {
+                    dustWipeOffBase = (dustWipeOffCur / 180);
+                    dustWipeOffCur = 0;
+                }
+            }
+            else
+            {
+                t = dustWipeOffCur / 60;
+                if (t < dustWipeOffBase)
+                {
+                    Sys_AmountOfWipedDust += (dustWipeOffBase - t);
+                }
+                dustWipeOffBase = t;
+                dustWipeOffCur = 0;
             }
         }
     }
@@ -534,6 +583,62 @@ static void _timeTick(void)
             {
                 Sys_LeftTime = (500 * 60 - Sys_EWorkedMin)/60 + 1;
             }
+        }
+
+        /* 各档位工作时间计数 */
+        switch (Sys_SpOption)
+        {
+        case SP_SLEEP:
+            runStatus.sleepMin ++;
+            if (runStatus.sleepMin >= 60)
+            {
+                runStatus.sleepMin = 0;
+
+                Sys_UsedTimeRecord.fan.sleep++;
+                Sys_UsedTimeRecord.fan.m_sleep++;
+            }
+            
+            break;
+        case SP_QUIET:
+            runStatus.quietMin ++;
+            if (runStatus.quietMin >= 60)
+            {
+                runStatus.quietMin = 0;
+
+                Sys_UsedTimeRecord.fan.quiet++;
+                Sys_UsedTimeRecord.fan.m_quiet++;
+            }
+            break;
+        case SP_LOW:
+            runStatus.lowMin ++;
+            if (runStatus.lowMin >= 60)
+            {
+                runStatus.lowMin = 0;
+
+                Sys_UsedTimeRecord.fan.low++;
+                Sys_UsedTimeRecord.fan.m_low++;
+            }
+            break;
+        case SP_MID:
+            runStatus.midMin++;
+            if (runStatus.midMin >= 60)
+            {
+                runStatus.midMin = 0;
+
+                Sys_UsedTimeRecord.fan.mid++;
+                Sys_UsedTimeRecord.fan.m_mid++;
+            }
+            break;
+        case SP_HIGH:
+            runStatus.highMin++;
+            if (runStatus.highMin >= 60)
+            {
+                runStatus.highMin = 0;
+
+                Sys_UsedTimeRecord.fan.high++;
+                Sys_UsedTimeRecord.fan.m_high++;
+            }
+            break;
         }
     }
 }
@@ -754,6 +859,20 @@ static void _enterEventDeal(void)
 
     Sys_WorkTime.hour = 0;
     Sys_WorkTime.min = 0;
+
+    if (Sys_ClockTime.month != runStatus.mouthIndex)
+    {
+        runStatus.mouthIndex = Sys_ClockTime.month;
+
+        Sys_UsedTimeRecord.fan.m_sleep = 0;
+        Sys_UsedTimeRecord.fan.m_quiet = 0;
+        Sys_UsedTimeRecord.fan.m_low = 0;
+        Sys_UsedTimeRecord.fan.m_mid = 0;
+        Sys_UsedTimeRecord.fan.m_high = 0;
+    }
+
+    dustWipeOffBase = 0;
+    dustWipeOffCur = 0;
 }
 
 static void _exitEventDeal(void)

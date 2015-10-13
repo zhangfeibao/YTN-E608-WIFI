@@ -3,6 +3,8 @@
 static uint8_t NHVMode_countdown;
 static uint8_t wifiResetCmdDelay;
 
+static bool_t remoteTimerChanged;
+
 static void _keyActionDeal(void)
 {
     /* 低亮按键处理 */
@@ -204,8 +206,10 @@ static void _timeTick(void)
     }
 
     /* 定时开机计算 */
-    if (Time_Flag1Min)
+    if (Time_Flag1Min || remoteTimerChanged)
     {
+        remoteTimerChanged = FALSE;
+
         /* 遥控器定时开机计算 */
         if (Sys_RemoteTimerCtr.funEn)
         {
@@ -272,8 +276,8 @@ static void _irDataDeal(void)
         {
             Sys_RemoteTimerCtr.funEn = TRUE;
         }
-        Sys_RemoteTimerCtr.segmentIndex = TIMER_SEGMENT_NULL;
 
+        Sys_RemoteTimerCtr.segmentIndex = TIMER_SEGMENT_NULL;
         Buzz_Set(1, 15, 20);
     }
     else if (IR_Code == IR_BOOK_1)
@@ -287,7 +291,9 @@ static void _irDataDeal(void)
             else
             {
                 Sys_RemoteTimerCtr.segmentIndex = 0;
+                remoteTimerChanged = TRUE;
             }
+
             Buzz_Set(1, 15, 20);
         }
     }
@@ -302,6 +308,7 @@ static void _irDataDeal(void)
             else
             {
                 Sys_RemoteTimerCtr.segmentIndex = 1;
+                remoteTimerChanged = TRUE;
             }
             Buzz_Set(1, 15, 20);
         }
@@ -317,6 +324,7 @@ static void _irDataDeal(void)
             else
             {
                 Sys_RemoteTimerCtr.segmentIndex = 2;
+                remoteTimerChanged = TRUE;
             }
             Buzz_Set(1, 15, 20);
         }
@@ -347,6 +355,8 @@ static void _enterEventDeal(void)
     Sys_LightLowerCountdown = 60;
 
     Sys_NHVModeEn = FALSE;
+
+    remoteTimerChanged = FALSE;
     
     Sys_TimerStartedIndex = -1;
 

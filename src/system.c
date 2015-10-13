@@ -8,6 +8,7 @@ PowerSta_t Sys_PowerSta;
 uint16_t Sys_AmountOfWipedDust;
 
 SimpleTime_t Sys_WorkTime;
+uint16_t Sys_TotalWorkedTime;
 uint16_t Sys_LeftTime;
 ClockTime_t Sys_ClockTime;
 

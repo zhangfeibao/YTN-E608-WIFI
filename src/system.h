@@ -81,8 +81,8 @@ typedef union
     uint8_t bytes[2];
     struct
     {
-        uint8_t enable : 1;
         uint8_t hour : 7;
+        uint8_t enable : 1;
         uint8_t min : 8;
     }bits;
 }TimeSet_t;
@@ -129,6 +129,7 @@ extern PowerSta_t Sys_PowerSta;
 extern uint16_t Sys_AmountOfWipedDust;
 
 extern SimpleTime_t Sys_WorkTime;
+extern uint16_t Sys_TotalWorkedTime;
 extern uint16_t Sys_LeftTime;
 extern ClockTime_t Sys_ClockTime;
 

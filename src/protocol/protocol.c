@@ -58,8 +58,8 @@ static void Protocol_StaResp(uint8_t cmd)
     sum += Enqueue(Tx_Queue,H(Sys_AmountOfWipedDust));     /* 去除的粉尘量 */
     sum += Enqueue(Tx_Queue,L(Sys_AmountOfWipedDust));
 
-    sum += Enqueue(Tx_Queue,Sys_WorkTime.hour);        /* 运行时间 */
-    sum += Enqueue(Tx_Queue,Sys_WorkTime.min);
+    sum += Enqueue(Tx_Queue,H(Sys_TotalWorkedTime));        /* 运行时间 */
+    sum += Enqueue(Tx_Queue,L(Sys_TotalWorkedTime));
 
     sum += Enqueue(Tx_Queue,H(Sys_LeftTime));           /* 剩余使用时间 */
     sum += Enqueue(Tx_Queue,L(Sys_LeftTime));
@@ -318,10 +318,47 @@ static void CMD_MEM_SET_DEAL(void)
 }
 static void CMD_REST_DEAL(void)
 {
+    uint8_t i;
     /* 执行恢复设备状态功能 */
+    Sys_IsAutoMode = FALSE;
+    Sys_SpOption = SP_MID;
 
+    Sys_PowerOnPoint1.bytes[0] = 0;
+    Sys_PowerOffPoint1.bytes[0] = 0;
+    Sys_PowerOnPoint2.bytes[0] = 0;
+    Sys_PowerOffPoint2.bytes[0] = 0;
+    Sys_PowerOnPoint3.bytes[0] = 0;
+    Sys_PowerOffPoint3.bytes[0] = 0;
+
+    Sys_PowerOnPoint1.bytes[1] = 0;
+    Sys_PowerOffPoint1.bytes[1] = 0;
+    Sys_PowerOnPoint2.bytes[1] = 0;
+    Sys_PowerOffPoint2.bytes[1] = 0;
+    Sys_PowerOnPoint3.bytes[1] = 0;
+    Sys_PowerOffPoint3.bytes[1] = 0;
+
+    for (i = 0; i < 20;i++)
+    {
+        Sys_UsedTimeRecord.bytes[i] = 0;
+    }
+
+    Sys_TimerFunEn = FALSE;
+    Sys_RemoteTimerCtr.funEn = FALSE;
+    Sys_RemoteTimerCtr.segmentIndex = 0;
+
+    Sys_TimerOnIndex = 0;
+    Sys_TimerStartedIndex = 0;
+
+    Sys_NHVModeEn = FALSE;
+
+    Sys_EWorkedMin = 0;
+    Sys_EDispEn = FALSE;
+
+    Sys_MemoryDataExist = FALSE;
+    Sys_TotalWorkedTime = 0;
+
+    State_TransitionTo(&State_Standby, TRUE, FALSE);
     Buzz_Set(1, 10, 15);
-
     Protocol_StaResp(CMD_REST);
 }
 
