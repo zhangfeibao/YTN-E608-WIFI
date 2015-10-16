@@ -168,7 +168,7 @@ static void port_init(void)
     P1 = 0x00;    	// port initial value
 
     P2IO = 0xCD;    	// direction
-    P2PU = 0x10;    	// pullup
+    P2PU = 0x12;    	// pullup
     P2OD = 0x00;    	// open drain
     P2 = 0x00;    	// port initial value
 
