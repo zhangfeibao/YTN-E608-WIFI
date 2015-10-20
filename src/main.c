@@ -10,8 +10,12 @@ void initAll(void)
     Dust_DeviceInit();
 
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL7;
+    Sys_TimerFunEn = TRUE;
 
-    State_TransitionTo(&State_Startup, TRUE, FALSE);
+    //State_TransitionTo(&State_TimerSetting, TRUE, FALSE);
+    //State_TransitionTo(&State_Work, TRUE, FALSE);
+    State_TransitionTo(&State_Standby, TRUE, FALSE);
+    //State_TransitionTo(&State_Startup, TRUE, FALSE);
     //State_TransitionTo(&State_Test, TRUE, FALSE);
 
     Buzz_Set(1, 10, 15);

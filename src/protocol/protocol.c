@@ -150,24 +150,31 @@ static void CMD_FAN_CTR_DEAL(void)
         if (Rx_Buf[2] == 0)
         {
             Sys_IsAutoMode = TRUE;
+            Dust_LevelForFan = Dust_Level;
         }
         else
         {
             Sys_IsAutoMode = FALSE;
-            Sys_SpOption = (SpOptions_t)Rx_Buf[2];
         }
 
         /* 一档状态，UV,Aion灯自动关闭 */
         if (Sys_SpOption == SP_SLEEP)
         {
+            if ((SpOptions_t)Rx_Buf[2] != SP_SLEEP)
+            {
+                Sys_UVLedSta = UV_LED_ON;
+                Sys_AionSta = AION_ON;
+            }
             Sys_UVLedSta = UV_LED_OFF;
             Sys_AionSta = AION_OFF;
         }
+
+        Sys_SpOption = (SpOptions_t)Rx_Buf[2];
         /* 2 - 5 档自动开启UV灯 */
-        else if (Sys_SpOption > SP_SLEEP)
+        if (Sys_SpOption == SP_SLEEP)
         {
-            Sys_UVLedSta = UV_LED_ON;
-            Sys_AionSta = AION_ON;
+            Sys_UVLedSta = UV_LED_OFF;
+            Sys_AionSta = AION_OFF;
         }
 
         Buzz_Set(1, 10, 15);
@@ -318,44 +325,7 @@ static void CMD_MEM_SET_DEAL(void)
 }
 static void CMD_REST_DEAL(void)
 {
-    uint8_t i;
-    /* 执行恢复设备状态功能 */
-    Sys_IsAutoMode = FALSE;
-    Sys_SpOption = SP_MID;
-
-    Sys_PowerOnPoint1.bytes[0] = 0;
-    Sys_PowerOffPoint1.bytes[0] = 0;
-    Sys_PowerOnPoint2.bytes[0] = 0;
-    Sys_PowerOffPoint2.bytes[0] = 0;
-    Sys_PowerOnPoint3.bytes[0] = 0;
-    Sys_PowerOffPoint3.bytes[0] = 0;
-
-    Sys_PowerOnPoint1.bytes[1] = 0;
-    Sys_PowerOffPoint1.bytes[1] = 0;
-    Sys_PowerOnPoint2.bytes[1] = 0;
-    Sys_PowerOffPoint2.bytes[1] = 0;
-    Sys_PowerOnPoint3.bytes[1] = 0;
-    Sys_PowerOffPoint3.bytes[1] = 0;
-
-    for (i = 0; i < 20;i++)
-    {
-        Sys_UsedTimeRecord.bytes[i] = 0;
-    }
-
-    Sys_TimerFunEn = FALSE;
-    Sys_RemoteTimerCtr.funEn = FALSE;
-    Sys_RemoteTimerCtr.segmentIndex = 0;
-
-    Sys_TimerOnIndex = 0;
-    Sys_TimerStartedIndex = 0;
-
-    Sys_NHVModeEn = FALSE;
-
-    Sys_EWorkedMin = 0;
-    Sys_EDispEn = FALSE;
-
-    Sys_MemoryDataExist = FALSE;
-    Sys_TotalWorkedTime = 0;
+    Sys_Reset();
 
     State_TransitionTo(&State_Standby, TRUE, FALSE);
     Buzz_Set(1, 10, 15);

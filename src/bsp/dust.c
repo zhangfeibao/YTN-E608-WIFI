@@ -120,7 +120,7 @@ void Dust_LevelUpdate(void)
     /* 更新颗粒物级别 */
     levelCur = Dust_getRtLevel();
 
-    if (levelCur > Dust_levelPre)
+    if (levelCur >= Dust_levelPre)
     {
         lowerHoldCnt = 0;
 
@@ -142,10 +142,10 @@ void Dust_LevelUpdate(void)
             Dust_levelPre = Dust_Level;
         }
     }
-    else
-    {
-        lowerHoldCnt = 0;
-    }
+//     else
+//     {
+//         lowerHoldCnt = 0;
+//     }
 
     /* 更新自动风俗级别 */
     if (Dust_Level > Dust_LevelForFan)

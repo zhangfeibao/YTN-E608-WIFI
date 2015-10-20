@@ -232,7 +232,7 @@ static void _rxDataDeal(void)
 
 static void _enterEventDeal(void)
 {
-    timerSettingItem = TIMER_SETTING_OK;
+    timerSettingItem = TIMER_ON_1_H;
     Time_100msCnt = 0;
 }
 

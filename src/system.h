@@ -36,7 +36,8 @@ typedef enum
     SP_QUIET,
     SP_LOW,
     SP_MID,
-    SP_HIGH
+    SP_HIGH,
+    SP_UNDEFIN
 }SpOptions_t;
 
 typedef enum
@@ -163,6 +164,7 @@ extern int8_t Sys_TimerOnIndex;
 extern int8_t Sys_TimerStartedIndex;
 
 extern bool_t Sys_NHVModeEn;
+extern uint16_t Sys_HVpgCnt;
 
 extern uint8_t Sys_LightLowerCountdown;
 
@@ -182,6 +184,7 @@ void Sys_UpdateTimerOnIndex(void);
 void Sys_LoadCtr(void);
 
 void Sys_EnterStopMode(void);
+void Sys_Reset(void);
 
 #endif
 

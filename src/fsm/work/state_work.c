@@ -26,6 +26,8 @@ static struct _runSta runStatus = {0xaa};
 static uint16_t dustWipeOffBase;
 static uint16_t dustWipeOffCur;
 
+static SpOptions_t spOptionBuf;
+
 static void _keyActionDeal(void)
 {
     /* 低亮状态，按键只执行高亮显示功能 */
@@ -75,6 +77,7 @@ static void _keyActionDeal(void)
                 if (Sys_SpOption > SP_HIGH)
                 {
                     Sys_IsAutoMode = TRUE;
+                    Dust_LevelForFan = Dust_Level;
                     if (Dust_IsReady && Dust_Level == 1)
                     {
                         IsAutoOffSta = TRUE;
@@ -91,9 +94,14 @@ static void _keyActionDeal(void)
             /* 2 - 5 档自动开启UV灯 */
             else if (Sys_SpOption > SP_SLEEP)
             {
-                Sys_UVLedSta = UV_LED_ON;
-                Sys_AionSta = AION_ON;
+                if (spOptionBuf == SP_SLEEP)
+                {
+                    Sys_UVLedSta = UV_LED_ON;
+                    Sys_AionSta = AION_ON;
+                }
             }
+
+            spOptionBuf = Sys_SpOption;
 
             Buzz_Set(1, 15, 20);
         }
@@ -157,6 +165,15 @@ static void _displayControl(void)
         A_ICON_CLEAN;
     }
 
+    /* 服务灯显示 */
+    if (Sys_HVpgCnt > 5)
+    {
+        if (Display_FlashOn)
+        {
+            A_ICON_SERVICE;
+        }
+    }
+
     /* PM2.5显示 */
     A_LABEL_PM25;
     Display_DustData(Dust_Data);
@@ -166,13 +183,22 @@ static void _displayControl(void)
     }
     else
     {
-        Display_DustLevel(Time_RTCSec % 6);
+        Display_DustLevel(Time_RTCSec % 6 + 1);
     }
 
     /* 温湿度显示 */
     
-    Display_ShowTemperature(Humidity_CurrentT);
-    Display_ShowHumidity(Humidity_CurrentH);
+    if (NTC_IsError)
+    {
+        Display_ShowTemperature(25);
+        Display_ShowHumidity(50);
+    }
+    else
+    {
+        Display_ShowTemperature(Humidity_CurrentT);
+        Display_ShowHumidity(Humidity_CurrentH);
+    }
+    
 
     A_LABEL_H;
     A_LABEL_T;
@@ -363,10 +389,35 @@ static void _taskExe(void)
     if (Sys_NHVModeEn)
     {
         Sys_LoadsEn.load.hv = 0;
+
+        Sys_HVpgCnt = 0;
     }
     else
     {
         Sys_LoadsEn.load.hv = 1;
+
+        if (P0 & BIT5)
+        {
+            /* 异常 */
+        }
+        else
+        {
+            /*正常*/
+            Sys_HVpgCnt = 0;
+        }
+
+        if (Sys_HVpgCnt > 5 && Sys_HVpgCnt < 120)
+        {
+            Sys_LoadsEn.load.hv = 0;
+        }
+        else if (Sys_HVpgCnt  > 125 && Sys_HVpgCnt < 1800)
+        {
+            Sys_LoadsEn.load.hv = 0;
+        }
+        else if (Sys_HVpgCnt > 1805)
+        {
+            Sys_LoadsEn.load.hv = 0;
+        }
     }
 }
 
@@ -388,6 +439,11 @@ static void _timeTick(void)
 
     if (Time_Flag1s)
     {
+        if (Sys_HVpgCnt < 2000)
+        {
+            Sys_HVpgCnt++;
+        }
+        
         /* 自动挡自动停机计数 */
         if (Sys_IsAutoMode)
         {
@@ -653,7 +709,7 @@ static void _motorCtr(void)
     }
     else
     {
-        if (IsAutoOffSta)
+        if (Sys_IsAutoMode)
         {
             if (Dust_IsReady)
             {
@@ -732,6 +788,8 @@ static void _irDataDeal(void)
         IsAutoOffSta = 0;
 
         Sys_IsAutoMode = TRUE;
+        Dust_LevelForFan = Dust_Level;
+
         if (Dust_IsReady && Dust_Level == 1)
         {
             IsAutoOffSta = 1;
@@ -750,6 +808,8 @@ static void _irDataDeal(void)
         Sys_UVLedSta = UV_LED_OFF;
         Sys_AionSta = AION_OFF;
 
+        spOptionBuf = Sys_SpOption;
+
         Buzz_Set(1, 15, 20);
 
     }
@@ -759,11 +819,14 @@ static void _irDataDeal(void)
         IsAutoOffSta = 0;
 
         Sys_SpOption = SP_QUIET;
-
         Sys_IsAutoMode = FALSE;
 
-        Sys_UVLedSta = UV_LED_ON;
-        Sys_AionSta = AION_ON;
+        if (spOptionBuf == SP_SLEEP)
+        {
+            Sys_UVLedSta = UV_LED_ON;
+            Sys_AionSta = AION_ON;
+        }
+        spOptionBuf = Sys_SpOption;
 
         Buzz_Set(1, 15, 20);
     }
@@ -773,11 +836,14 @@ static void _irDataDeal(void)
         IsAutoOffSta = 0;
 
         Sys_SpOption = SP_LOW;
-
         Sys_IsAutoMode = FALSE;
 
-        Sys_UVLedSta = UV_LED_ON;
-        Sys_AionSta = AION_ON;
+        if (spOptionBuf == SP_SLEEP)
+        {
+            Sys_UVLedSta = UV_LED_ON;
+            Sys_AionSta = AION_ON;
+        }
+        spOptionBuf = Sys_SpOption;
 
         Buzz_Set(1, 15, 20);
     }
@@ -787,11 +853,14 @@ static void _irDataDeal(void)
         IsAutoOffSta = 0;
 
         Sys_SpOption = SP_MID;
-
         Sys_IsAutoMode = FALSE;
 
-        Sys_UVLedSta = UV_LED_ON;
-        Sys_AionSta = AION_ON;
+        if (spOptionBuf == SP_SLEEP)
+        {
+            Sys_UVLedSta = UV_LED_ON;
+            Sys_AionSta = AION_ON;
+        }
+        spOptionBuf = Sys_SpOption;
 
         Buzz_Set(1, 15, 20);
     }
@@ -801,11 +870,14 @@ static void _irDataDeal(void)
         IsAutoOffSta = 0;
 
         Sys_SpOption = SP_HIGH;
-
         Sys_IsAutoMode = FALSE;
 
-        Sys_UVLedSta = UV_LED_ON;
-        Sys_AionSta = AION_ON;
+        if (spOptionBuf == SP_SLEEP)
+        {
+            Sys_UVLedSta = UV_LED_ON;
+            Sys_AionSta = AION_ON;
+        }
+        spOptionBuf = Sys_SpOption;
 
         Buzz_Set(1, 15, 20);
     }
@@ -853,6 +925,8 @@ static void _enterEventDeal(void)
         Sys_UVLedSta = UV_LED_ON;
     }
 
+    spOptionBuf = Sys_SpOption;
+
     countOfSec = 0;
 
     Sys_AmountOfWipedDust = 0;
@@ -873,6 +947,8 @@ static void _enterEventDeal(void)
 
     dustWipeOffBase = 0;
     dustWipeOffCur = 0;
+
+    Sys_HVpgCnt = 0;
 }
 
 static void _exitEventDeal(void)

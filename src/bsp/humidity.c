@@ -3,6 +3,8 @@
 int8_t idata Humidity_CurrentT;
 uint8_t idata Humidity_CurrentH;
 
+bool_t NTC_IsError;
+
 static code int8_t T_table[] =
 {
     -20,// AD = 0
@@ -3095,9 +3097,17 @@ uint8_t Utils_GetAdValue(uint8_t ch)
 }
 
 
-
 static void Humidity_Ad2T(uint8_t adValue)
 {
+    if (adValue < 5 || adValue > 240)
+    {
+        NTC_IsError = TRUE;
+    }
+    else
+    {
+        NTC_IsError = FALSE;
+    }
+
     if (adValue > 172)
     {
         Humidity_CurrentT = 45;

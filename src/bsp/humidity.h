@@ -10,6 +10,8 @@ extern uint8_t idata Humidity_CurrentH;
 
 extern uint8_t idata Humidity_AdHBuf;
 
+extern bool_t NTC_IsError;
+
 
 uint8_t Utils_GetAdValue(uint8_t ch);
 

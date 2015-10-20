@@ -39,6 +39,7 @@ int8_t Sys_TimerOnIndex;
 int8_t Sys_TimerStartedIndex;
 
 bool_t Sys_NHVModeEn;
+uint16_t Sys_HVpgCnt;
 
 uint8_t Sys_LightLowerCountdown;
 
@@ -108,11 +109,11 @@ void Sys_LoadCtr(void)
 
     if (Sys_LoadsEn.load.uv)
     {
-        P14 = 1;
+        P14 = 0;
     }
     else
     {
-        P14 = 0;
+        P14 = 1;
     }
 
     if (Sys_LoadsEn.load.aion)
@@ -171,6 +172,46 @@ void Sys_EnterStopMode(void)
 }
 
 
+void Sys_Reset(void)
+{
+    uint8_t i;
+    /* 执行恢复设备状态功能 */
+    Sys_IsAutoMode = FALSE;
+    Sys_SpOption = SP_MID;
 
+    Sys_PowerOnPoint1.bytes[0] = 0;
+    Sys_PowerOffPoint1.bytes[0] = 0;
+    Sys_PowerOnPoint2.bytes[0] = 0;
+    Sys_PowerOffPoint2.bytes[0] = 0;
+    Sys_PowerOnPoint3.bytes[0] = 0;
+    Sys_PowerOffPoint3.bytes[0] = 0;
+
+    Sys_PowerOnPoint1.bytes[1] = 0;
+    Sys_PowerOffPoint1.bytes[1] = 0;
+    Sys_PowerOnPoint2.bytes[1] = 0;
+    Sys_PowerOffPoint2.bytes[1] = 0;
+    Sys_PowerOnPoint3.bytes[1] = 0;
+    Sys_PowerOffPoint3.bytes[1] = 0;
+
+    for (i = 0; i < 20; i++)
+    {
+        Sys_UsedTimeRecord.bytes[i] = 0;
+    }
+
+    Sys_TimerFunEn = FALSE;
+    Sys_RemoteTimerCtr.funEn = FALSE;
+    Sys_RemoteTimerCtr.segmentIndex = 0;
+
+    Sys_TimerOnIndex = -1;
+    Sys_TimerStartedIndex = -1;
+
+    Sys_NHVModeEn = FALSE;
+
+    Sys_EWorkedMin = 0;
+    Sys_EDispEn = FALSE;
+
+    Sys_MemoryDataExist = FALSE;
+    Sys_TotalWorkedTime = 0;
+}
 
 

@@ -21,6 +21,15 @@ static void _keyActionDeal(void)
         return;
     }
 
+    /* 无高压模式只响应电源按键 */
+    if (Sys_NHVModeEn)
+    {
+        if (Key_Code != KEY_POWER)
+        {
+            return;
+        }
+    }
+
     /* 待机状态按键处理 */
     if (Key_Action == KEY_ACTION_RELEASING)
     {
@@ -82,6 +91,12 @@ static void _keyActionDeal(void)
 
             Buzz_Set(1, 15, 20);
         }
+        else if (Key_Code == KEY_POWER)
+        {
+            Sys_Reset();
+
+            Buzz_Set(1, 15, 20);
+        }
     }
 }
 
@@ -101,7 +116,7 @@ static void _displayControl(void)
     A_CIRCLE_VANE5;
 
     /* 粉尘数据显示 */
-    Display_DustData(Dust_Data);
+    Display_DustData(0);
 
     /* 实时时间显示 */
     Display_ShowRT(Sys_ClockTime.hour, Sys_ClockTime.min, FALSE, FALSE);
@@ -368,6 +383,8 @@ static void _enterEventDeal(void)
             Sys_UpdateTimerOnIndex();
         }
     }
+
+    Sys_HVpgCnt = 0;
 }
 
 static void _exitEventDeal(void)
