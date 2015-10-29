@@ -121,6 +121,8 @@ typedef union
 }UsedTimeRecord_t;
 
 
+extern volatile bool_t Sys_SuperFastModeEn;
+
 
 extern uint8_t Sys_WifiStrength;
 extern ConnSta_t Sys_RouteConnSta;
@@ -136,12 +138,16 @@ extern ClockTime_t Sys_ClockTime;
 
 extern bool_t Sys_IsAutoMode;
 extern SpOptions_t Sys_SpOption;
+extern bool_t Sys_IsAutoModeEEPROM;
+extern SpOptions_t Sys_SpOptionEEPROM;
 
 extern FixMode_t Sys_FixMode;
 extern CleanMode_t Sys_CleanMode;
 
 extern AionSta_t Sys_AionSta;
 extern UVLedSta_t Sys_UVLedSta;
+extern AionSta_t Sys_AionStaEEPROM;
+extern UVLedSta_t Sys_UVLedStaEEPROM;
 
 extern TimeSet_t Sys_PowerOnPoint1;
 extern TimeSet_t Sys_PowerOffPoint1;

@@ -4,6 +4,10 @@ static uint8_t memoryOffCounedown;
 
 static uint8_t dustRecord10Index;
 static uint8_t dustRecord30Index;
+static uint8_t dustRecord10Cnt;
+static uint8_t dustRecord30Cnt;
+static uint16_t dustRecord10Sum;
+static uint16_t dustRecord30Sum;
 
 static bool_t IsAutoOffSta;
 static uint16_t AutoOffCnt;
@@ -126,8 +130,18 @@ static void _keyActionDeal(void)
         {
             memoryOffCounedown = 30;
             Sys_MemoryDataExist = TRUE;
+
+            Sys_IsAutoModeEEPROM = Sys_IsAutoMode;
+            Sys_SpOptionEEPROM = Sys_SpOption;
+            Sys_AionStaEEPROM = Sys_AionSta;
+            Sys_UVLedStaEEPROM = Sys_UVLedSta;
             
             Buzz_Set(1, 15, 20);
+        }
+        else if (Key_Code == (KEY_SP | KEY_CLOCK))
+        {
+            Sys_SuperFastModeEn = TRUE;
+            Buzz_Set(1, 50, 100);
         }
     }
 }
@@ -154,9 +168,16 @@ static void _displayControl(void)
     Display_SetLine();
 
     /* Wifi 状态灯显示 */
-    if (Sys_RouteConnSta == CONNECTED)
+    if (Sys_RouteConnSta == CONNECTED && Sys_PlanformConnSta == CONNECTED)
     {
         A_ICON_WIFI;
+    }
+    else if (Sys_RouteConnSta == CONNECTED || Sys_PlanformConnSta == CONNECTED)
+    {
+        if (Display_FlashOn)
+        {
+            A_ICON_WIFI;
+        }
     }
 
     /* 无高压模式图标显示 */
@@ -406,15 +427,16 @@ static void _taskExe(void)
             Sys_HVpgCnt = 0;
         }
 
-        if (Sys_HVpgCnt > 5 && Sys_HVpgCnt < 120)
+        //if (Sys_HVpgCnt > 5 && Sys_HVpgCnt < 120)
+        //{
+            //Sys_LoadsEn.load.hv = 0;
+        //}
+        //else 
+        if (Sys_HVpgCnt  > 240 && Sys_HVpgCnt < 2040)
         {
             Sys_LoadsEn.load.hv = 0;
         }
-        else if (Sys_HVpgCnt  > 125 && Sys_HVpgCnt < 1800)
-        {
-            Sys_LoadsEn.load.hv = 0;
-        }
-        else if (Sys_HVpgCnt > 1805)
+        else if (Sys_HVpgCnt > 2045)
         {
             Sys_LoadsEn.load.hv = 0;
         }
@@ -439,9 +461,17 @@ static void _timeTick(void)
 
     if (Time_Flag1s)
     {
-        if (Sys_HVpgCnt < 2000)
+        if (IsAutoOffSta || Sys_NHVModeEn)
+        {
+            Sys_HVpgCnt = 0;
+        }
+        else if(Sys_HVpgCnt < 2100)
         {
             Sys_HVpgCnt++;
+            if (Sys_HVpgCnt >= 2045)
+            {
+                Sys_HVpgCnt = 241;
+            }
         }
         
         /* 自动挡自动停机计数 */
@@ -526,55 +556,95 @@ static void _timeTick(void)
 
     if (Time_Flag1Min)
     {
-        /* 记录PM25 10分钟数据点 */
-        if (dustRecord10Index == 12)
+        dustRecord10Sum += Dust_Data;
+        dustRecord10Cnt++;
+        if (dustRecord10Cnt >= 10)
         {
-            for (index = 0; index < 11; index++)
+            dustRecord10Cnt = 0;
+
+            /* 记录PM25 10分钟数据点 */
+            if (dustRecord10Index == 12)
             {
-                Sys_Pm25Records_10.records[index] = Sys_Pm25Records_10.records[index + 1];
+                for (index = 0; index < 11; index++)
+                {
+                    Sys_Pm25Records_10.records[index] = Sys_Pm25Records_10.records[index + 1];
+                }
+                Sys_Pm25Records_10.records[11] = (uint8_t)(dustRecord10Sum / 10);
+
+                Sys_Pm25Records_10.min += 10;
+                if (Sys_Pm25Records_10.min >= 60)
+                {
+                    Sys_Pm25Records_10.min -= 60;
+
+                    Sys_Pm25Records_10.hour++;
+                    if (Sys_Pm25Records_10.hour >= 24)
+                    {
+                        Sys_Pm25Records_10.hour = 0;
+                    }
+                }
             }
-            Sys_Pm25Records_10.records[11] = Dust_Data;
-        }
-        else
-        {
-            for (index = dustRecord10Index; index < 12; index++)
+            else
             {
-                Sys_Pm25Records_10.records[index] = Dust_Data;
+                if (dustRecord10Index == 0)
+                {
+                    Sys_Pm25Records_10.hour = Sys_ClockTime.hour;
+                    Sys_Pm25Records_10.min = Sys_ClockTime.min;
+                }
+                Sys_Pm25Records_10.records[dustRecord10Index] = (uint8_t)(dustRecord10Sum/10);
             }
+
+            dustRecord10Index++;
+            if (dustRecord10Index >= 12)
+            {
+                dustRecord10Index = 12;
+            }
+
+            dustRecord10Sum = 0;
         }
 
-        dustRecord10Index++;
-        if (dustRecord10Index >= 12)
-        {
-            dustRecord10Index = 12;
-        }
 
-
-        /* 记录PM25 30分钟数据点 */
-        if (dustRecord30Index == 12)
+        dustRecord30Sum += Dust_Data;
+        dustRecord30Cnt++;
+        if (dustRecord30Cnt >= 30)
         {
-            for (index = 0; index < 11; index++)
+            dustRecord30Cnt = 0;
+
+            /* 记录PM25 30分钟数据点 */
+            if (dustRecord30Index == 12)
             {
-                Sys_Pm25Records_30.records[index] = Sys_Pm25Records_30.records[index + 1];
-            }
-            Sys_Pm25Records_30.records[11] = Dust_Data;
-        }
-        else
-        {
-            for (index = dustRecord30Index; index < 12; index++)
-            {
-                Sys_Pm25Records_30.records[index] = Dust_Data;
-            }
-        }
+                for (index = 0; index < 11; index++)
+                {
+                    Sys_Pm25Records_30.records[index] = Sys_Pm25Records_30.records[index + 1];
+                }
+                Sys_Pm25Records_30.records[11] = (uint8_t)(dustRecord30Sum / 30);
 
-        if ((Sys_WorkTime.min % 2) == 0)
-        {
+                Sys_Pm25Records_30.min += 10;
+                if (Sys_Pm25Records_30.min >= 60)
+                {
+                    Sys_Pm25Records_30.min -= 60;
+
+                    Sys_Pm25Records_30.hour++;
+                    if (Sys_Pm25Records_30.hour >= 24)
+                    {
+                        Sys_Pm25Records_30.hour = 0;
+                    }
+                }
+            }
+            else
+            {
+                if (dustRecord30Index == 0)
+                {
+                    Sys_Pm25Records_30.hour = Sys_ClockTime.hour;
+                    Sys_Pm25Records_30.min = Sys_ClockTime.min;
+                }
+                Sys_Pm25Records_30.records[dustRecord30Index] = (uint8_t)(dustRecord30Sum / 30);
+            }
+
             dustRecord30Index++;
-        }
-
-        if (dustRecord30Index >= 12)
-        {
-            dustRecord30Index = 12;
+            if (dustRecord30Index >= 12)
+            {
+                dustRecord30Index = 12;
+            }
         }
 
 
@@ -901,6 +971,8 @@ static void _rxDataDeal(void)
 
 static void _enterEventDeal(void)
 {
+    uint8_t i;
+
     Sys_PowerSta = POWER_ON;
 
     Display_IsLowLight = FALSE;
@@ -910,7 +982,12 @@ static void _enterEventDeal(void)
     AutoOffCnt = 0;
 
     dustRecord10Index = 0;    /* PM25记录10分钟数据点index */
+    dustRecord10Cnt = 0;
+    dustRecord10Sum = 0;
     dustRecord30Index = 0;    /* PM25记录30分钟数据点index */
+    dustRecord30Cnt = 0;
+    dustRecord30Sum = 0;
+
 
     Aip1944_BrightnessLevel = BRIGHTNESS_LEVEL6;
 
@@ -920,9 +997,17 @@ static void _enterEventDeal(void)
     /* 开机默认参数 */
     if (!Sys_MemoryDataExist)
     {
+        Sys_IsAutoMode = FALSE;
         Sys_SpOption = SP_LOW;
         Sys_AionSta = AION_ON;
         Sys_UVLedSta = UV_LED_ON;
+    }
+    else
+    {
+        Sys_IsAutoMode = Sys_IsAutoModeEEPROM;
+        Sys_SpOption = Sys_SpOptionEEPROM;
+        Sys_AionSta = Sys_AionStaEEPROM;
+        Sys_UVLedSta = Sys_UVLedStaEEPROM;
     }
 
     spOptionBuf = Sys_SpOption;
@@ -949,6 +1034,17 @@ static void _enterEventDeal(void)
     dustWipeOffCur = 0;
 
     Sys_HVpgCnt = 0;
+
+    /*初始化粉尘数据*/
+    for (i = 0; i < 12; i++)
+    {
+        Sys_Pm25Records_10.records[i] = 0;
+        Sys_Pm25Records_30.records[i] = 0;
+    }
+    Sys_Pm25Records_10.hour = Sys_ClockTime.hour;
+    Sys_Pm25Records_10.min = Sys_ClockTime.min;
+    Sys_Pm25Records_30.hour = Sys_ClockTime.hour;
+    Sys_Pm25Records_30.min = Sys_ClockTime.min;
 }
 
 static void _exitEventDeal(void)

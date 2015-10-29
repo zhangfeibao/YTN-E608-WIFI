@@ -1,5 +1,7 @@
 #include "heads.h"
 
+volatile bool_t Sys_SuperFastModeEn;
+
 uint8_t Sys_WifiStrength;
 ConnSta_t Sys_RouteConnSta;
 ConnSta_t Sys_PlanformConnSta;
@@ -13,13 +15,17 @@ uint16_t Sys_LeftTime;
 ClockTime_t Sys_ClockTime;
 
 bool_t Sys_IsAutoMode;
+bool_t Sys_IsAutoModeEEPROM;
 SpOptions_t Sys_SpOption;
+SpOptions_t Sys_SpOptionEEPROM;
 
 FixMode_t Sys_FixMode;
 CleanMode_t Sys_CleanMode;
 
 AionSta_t Sys_AionSta;
 UVLedSta_t Sys_UVLedSta;
+AionSta_t Sys_AionStaEEPROM;
+UVLedSta_t Sys_UVLedStaEEPROM;
 
 TimeSet_t Sys_PowerOnPoint1;
 TimeSet_t Sys_PowerOffPoint1;
@@ -198,7 +204,7 @@ void Sys_Reset(void)
         Sys_UsedTimeRecord.bytes[i] = 0;
     }
 
-    Sys_TimerFunEn = FALSE;
+    Sys_TimerFunEn = TRUE;
     Sys_RemoteTimerCtr.funEn = FALSE;
     Sys_RemoteTimerCtr.segmentIndex = 0;
 

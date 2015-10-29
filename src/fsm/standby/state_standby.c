@@ -361,6 +361,8 @@ static void _rxDataDeal(void)
 
 static void _enterEventDeal(void)
 {
+    Sys_SuperFastModeEn = FALSE;
+
     Sys_PowerSta = POWER_OFF;
 
     wifiResetCmdDelay = 0;

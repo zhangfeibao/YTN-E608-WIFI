@@ -82,7 +82,7 @@ void INT_WT() interrupt 20
         Time_Flag1s++;
 
         Time_RTCSec++;
-        if (Time_RTCSec >= 60)
+        if ((Time_RTCSec >= 60) || Sys_SuperFastModeEn)
         {
             Time_RTCSec = 0;
 

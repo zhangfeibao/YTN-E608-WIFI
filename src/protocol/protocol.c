@@ -318,6 +318,12 @@ static void CMD_MEM_SET_DEAL(void)
     /* 执行一键记忆功能 */
 
     Sys_MemoryDataExist = TRUE;
+
+    Sys_IsAutoModeEEPROM = Sys_IsAutoMode;
+    Sys_SpOptionEEPROM = Sys_SpOption;
+    Sys_AionStaEEPROM = Sys_AionSta;
+    Sys_UVLedStaEEPROM = Sys_UVLedSta;
+
     State_TransitionTo(&State_Standby, TRUE, FALSE);
 
     Buzz_Set(1, 10, 15);
