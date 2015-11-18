@@ -645,6 +645,8 @@ static void _timeTick(void)
             {
                 dustRecord30Index = 12;
             }
+
+            dustRecord30Sum = 0;
         }
 
 
